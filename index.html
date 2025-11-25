@@ -25,9 +25,9 @@
 
     <!-- Header -->
     <header class="bg-blue-800 text-white p-6 shadow-md sticky top-0 z-10">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div>
-                <h1 class="text-3xl font-extrabold tracking-tight">Wireless & Mobile Communication</h1>
+                <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Wireless & Mobile Communication</h1>
                 <p class="text-blue-200 text-sm mt-1">Foundation Course Mock Test | Created by <span class="text-yellow-300 font-bold">Adi Bhai</span></p>
             </div>
             <div id="score-display" class="hidden text-right bg-blue-900 px-4 py-2 rounded-lg border border-blue-700">
@@ -41,19 +41,15 @@
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto p-6 space-y-8">
+    <main class="max-w-6xl mx-auto p-6 space-y-8">
 
         <!-- Set Selection Tabs -->
-        <div class="flex flex-wrap justify-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <button id="btn-set1" onclick="switchSet(1)" class="px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Set 1 (Q1-80)
-            </button>
-            <button id="btn-set2" onclick="switchSet(2)" class="px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Set 2 (Q81-160)
-            </button>
-            <button id="btn-set3" onclick="switchSet(3)" class="px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Set 3 (Q161-240)
-            </button>
+        <div class="flex flex-wrap justify-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100 sticky top-24 z-20">
+            <button id="btn-set1" onclick="switchSet(1)" class="px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Set 1 (Q1-80)</button>
+            <button id="btn-set2" onclick="switchSet(2)" class="px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Set 2 (Q81-160)</button>
+            <button id="btn-set3" onclick="switchSet(3)" class="px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Set 3 (Q161-240)</button>
+            <button id="btn-set4" onclick="switchSet(4)" class="px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Set 4 (Q241-320)</button>
+            <button id="btn-set5" onclick="switchSet(5)" class="px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Set 5 (Q321-400)</button>
         </div>
 
         <!-- Instructions -->
@@ -86,7 +82,7 @@
         </div>
 
         <!-- Actions -->
-        <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg z-20 flex justify-center gap-4">
+        <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg z-30 flex justify-center gap-4">
             <button onclick="submitTest()" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-10 rounded-full shadow-md transform transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                 Submit Test
             </button>
@@ -99,6 +95,7 @@
 
     <script>
         // --- DATA SOURCE ---
+        
         // Questions 1-40 (Set 1 Simple)
         const simpleMCQsSet1 = [
             { id: 1, q: "Which of the following is a characteristic of wired communication?", options: { A: "High mobility", B: "High interference", C: "High reliability and security", D: "Shared medium" }, ans: "C" },
@@ -229,6 +226,94 @@
             { id: 198, q: "Beamforming improves signal by:", options: { A: "Broadcasting everywhere", B: "Focusing energy towards specific user", C: "Reducing power", D: "Using lower frequency" }, ans: "B" },
             { id: 199, q: "SDN separates the Control Plane from the:", options: { A: "User Plane", B: "Data Plane (Forwarding Plane)", C: "Management Plane", D: "Power Plane" }, ans: "B" },
             { id: 200, q: "NFV stands for:", options: { A: "Network Frequency Verification", B: "Network Function Virtualization", C: "New Fast Video", D: "Near Field Voice" }, ans: "B" }
+        ];
+
+        // Questions 241-280 (Set 4 Simple)
+        const simpleMCQsSet4 = [
+            { id: 241, q: "Which fading occurs when coherence bandwidth is smaller than signal bandwidth?", options: { A: "Flat Fading", B: "Frequency Selective Fading", C: "Slow Fading", D: "Fast Fading" }, ans: "B" },
+            { id: 242, q: "What defines 'Slow Fading'?", options: { A: "Doppler spread is high", B: "Symbol duration < Coherence time", C: "Symbol duration > Coherence time", D: "High vehicle speed" }, ans: "B" },
+            { id: 243, q: "Rayleigh Fading model is best used for:", options: { A: "Line of Sight (LOS)", B: "Non-Line of Sight (NLOS)", C: "Satellite communication", D: "Fixed wired links" }, ans: "B" },
+            { id: 244, q: "In GSM, what is the bandwidth of one channel?", options: { A: "200 kHz", B: "1.25 MHz", C: "5 MHz", D: "20 MHz" }, ans: "A" },
+            { id: 245, q: "Which GSM node contains the 'EIR' (Equipment Identity Register)?", options: { A: "BTS", B: "BSC", C: "MSC", D: "HLR" }, ans: "C" },
+            { id: 246, q: "The 'Near-Far Problem' is most critical in which technology?", options: { A: "FDMA", B: "TDMA", C: "CDMA", D: "OFDMA" }, ans: "C" },
+            { id: 247, q: "What solves the Near-Far problem in CDMA?", options: { A: "Frequency Hopping", B: "Fast Power Control", C: "Time Slots", D: "Sectoring" }, ans: "B" },
+            { id: 248, q: "Rician Fading implies the presence of:", options: { A: "No Signal", B: "Strong Line of Sight (LOS) path", C: "Only reflected paths", D: "Rain attenuation" }, ans: "B" },
+            { id: 249, q: "What is 'Delay Spread' related to?", options: { A: "Doppler Shift", B: "Multipath propagation", C: "Battery life", D: "Antenna gain" }, ans: "B" },
+            { id: 250, q: "In LTE, how many subcarriers are in one Resource Block?", options: { A: "7", B: "12", C: "24", D: "100" }, ans: "B" },
+            { id: 251, q: "The spacing between LTE subcarriers is:", options: { A: "15 kHz", B: "30 kHz", C: "60 kHz", D: "200 kHz" }, ans: "A" },
+            { id: 252, q: "Which logical channel carries paging information in GSM?", options: { A: "TCH", B: "PCH", C: "BCCH", D: "RACH" }, ans: "B" },
+            { id: 253, q: "What code is used to separate Base Stations in CDMA?", options: { A: "Walsh Code", B: "PN Offset (Pseudo-Noise)", C: "Area Code", D: "Color Code" }, ans: "B" },
+            { id: 254, q: "An Isotropic Radiator radiates energy:", options: { A: "In one direction", B: "Equally in all directions", C: "In two directions", D: "Towards the sky" }, ans: "B" },
+            { id: 255, q: "Antenna Gain is usually expressed in:", options: { A: "Watts", B: "dBi or dBd", C: "Ohms", D: "Hertz" }, ans: "B" },
+            { id: 256, q: "Friis Transmission Equation relates to:", options: { A: "Free Space Path Loss", B: "Cable Loss", C: "Digital Coding", D: "Modulation Index" }, ans: "A" },
+            { id: 257, q: "What is 'Diversity' in wireless comms?", options: { A: "Using many frequencies", B: "Sending/Receiving multiple copies of signal to fight fading", C: "Using different brands of phones", D: "Using analog and digital together" }, ans: "B" },
+            { id: 258, q: "Time Diversity involves:", options: { A: "Sending data at different times", B: "Using different antennas", C: "Using different codes", D: "Changing amplitude" }, ans: "A" },
+            { id: 259, q: "In LTE, the 'Cyclic Prefix' (CP) prevents:", options: { A: "Doppler Shift", B: "ISI (Inter-Symbol Interference)", C: "Noise", D: "Hacking" }, ans: "B" },
+            { id: 260, q: "Which entity performs ciphering in GSM?", options: { A: "BTS", B: "BSC", C: "MSC", D: "HLR" }, ans: "A" },
+            { id: 261, q: "UMTS (3G) uses which air interface?", options: { A: "W-CDMA", B: "OFDMA", C: "TDMA", D: "FDMA" }, ans: "A" },
+            { id: 262, q: "HSDPA stands for:", options: { A: "High Speed Downlink Packet Access", B: "High Signal Data Protocol Area", C: "Home Subscriber Data Protection", D: "Hybrid Signal Digital Processing" }, ans: "A" },
+            { id: 263, q: "Which 4G modulation is used when signal quality is excellent?", options: { A: "QPSK", B: "16-QAM", C: "64-QAM", D: "BPSK" }, ans: "C" },
+            { id: 264, q: "What is the duration of one LTE radio frame?", options: { A: "0.5 ms", B: "1 ms", C: "5 ms", D: "10 ms" }, ans: "D" },
+            { id: 265, q: "The 'Hidden Node Problem' is associated with:", options: { A: "Cellular Handoff", B: "CSMA/CA (Wi-Fi)", C: "LTE Scheduling", D: "GSM Voice" }, ans: "B" },
+            { id: 266, q: "In Wireless, 'RSSI' stands for:", options: { A: "Radio Signal Strength Indicator", B: "Received Signal Strength Indicator", C: "Remote System Service ID", D: "Random Signal Sequence Index" }, ans: "B" },
+            { id: 267, q: "Which handover is controlled by the Mobile Station (UE)?", options: { A: "Network Controlled HO", B: "Mobile Assisted HO (MAHO)", C: "Mobile Controlled HO (MCHO)", D: "Soft HO" }, ans: "C" },
+            { id: 268, q: "Path Loss exponent 'n' in Free Space is:", options: { A: "1", B: "2", C: "4", D: "6" }, ans: "B" },
+            { id: 269, q: "Shadowing is typically modeled by:", options: { A: "Rayleigh Distribution", B: "Log-Normal Distribution", C: "Gaussian Distribution", D: "Poisson Distribution" }, ans: "B" },
+            { id: 270, q: "The 'AUC' (Authentication Center) generates:", options: { A: "Billing records", B: "Triplets (RAND, SRES, Kc)", C: "Phone numbers", D: "SMS" }, ans: "B" },
+            { id: 271, q: "Which logical channel is used for initial random access in LTE?", options: { A: "PDSCH", B: "PRACH", C: "PUCCH", D: "PDCCH" }, ans: "B" },
+            { id: 272, q: "MIMO Spatial Multiplexing requires:", options: { A: "High SNR and Low Correlation", B: "Low SNR", C: "Line of Sight only", D: "Single Antenna" }, ans: "A" },
+            { id: 273, q: "What is 'HARQ'?", options: { A: "Handover ARQ", B: "Hybrid Automatic Repeat Request", C: "High Altitude Radio Quality", D: "Home Area Request" }, ans: "B" },
+            { id: 274, q: "Common Control Channel (CCCH) is used for:", options: { A: "Voice calls", B: "Connection establishment signaling", C: "User data", D: "Broadcast info" }, ans: "B" },
+            { id: 275, q: "The VLR (Visitor Location Register) stores data for:", options: { A: "All subscribers globally", B: "Subscribers currently in its area", C: "Blocked phones", D: "Billing history" }, ans: "B" },
+            { id: 276, q: "Coherence Time is inversely proportional to:", options: { A: "Delay Spread", B: "Doppler Spread", C: "Bandwidth", D: "Power" }, ans: "B" },
+            { id: 277, q: "Which is a '3GPP2' standard?", options: { A: "LTE", B: "UMTS", C: "CDMA2000", D: "GSM" }, ans: "C" },
+            { id: 278, q: "What does 'E-UTRAN' refer to?", options: { A: "2G Radio", B: "3G Radio", C: "LTE Radio Access Network", D: "5G Core" }, ans: "C" },
+            { id: 279, q: "Which transmission mode achieves highest capacity?", options: { A: "SISO", B: "SIMO", C: "MISO", D: "MIMO" }, ans: "D" },
+            { id: 280, q: "What is the primary benefit of 'Small Cells'?", options: { A: "Coverage in rural areas", B: "Capacity increase in hot-spots", C: "High mobility support", D: "Lower backhaul cost" }, ans: "B" }
+        ];
+
+        // Questions 321-360 (Set 5 Simple)
+        const simpleMCQsSet5 = [
+            { id: 321, q: "What is the maximum channel bandwidth in 5G FR1?", options: { A: "20 MHz", B: "100 MHz", C: "400 MHz", D: "1 GHz" }, ans: "B" },
+            { id: 322, q: "FR2 (Frequency Range 2) in 5G is also known as:", options: { A: "Sub-6 GHz", B: "mmWave", C: "Low Band", D: "C-Band" }, ans: "B" },
+            { id: 323, q: "Which SCS (Subcarrier Spacing) is NOT supported in LTE but is in 5G?", options: { A: "15 kHz", B: "30 kHz", C: "60 kHz", D: "All of these" }, ans: "C" },
+            { id: 324, q: "NB-IoT is designed for:", options: { A: "High speed video", B: "Low power, wide area sensors", C: "Voice calls", D: "Gaming" }, ans: "B" },
+            { id: 325, q: "What is 'SideLink' in 5G/V2X?", options: { A: "Tower to Phone", B: "Phone to Tower", C: "Device to Device direct comms", D: "Satellite link" }, ans: "C" },
+            { id: 326, q: "V2X stands for:", options: { A: "Voice to X", B: "Vehicle to Everything", C: "Video to X-ray", D: "Virtual to Xtreme" }, ans: "B" },
+            { id: 327, q: "Which 5G network function manages Policy Rules?", options: { A: "AMF", B: "SMF", C: "PCF", D: "UDM" }, ans: "C" },
+            { id: 328, q: "URLLC target reliability is:", options: { A: "90%", B: "99%", C: "99.999%", D: "50%" }, ans: "C" },
+            { id: 329, q: "In 5G, the 'N6' interface connects UPF to:", options: { A: "gNodeB", B: "AMF", C: "Data Network (DN/Internet)", D: "SMF" }, ans: "C" },
+            { id: 330, q: "Which is a typical 6G KPI?", options: { A: "1 Gbps", B: "1 Tbps", C: "100 Mbps", D: "10 Gbps" }, ans: "B" },
+            { id: 331, q: "Integrated Access and Backhaul (IAB) allows gNodeBs to:", options: { A: "Use fiber only", B: "Use wireless for backhaul", C: "Use satellite only", D: "Disable backhaul" }, ans: "B" },
+            { id: 332, q: "Which modulation is introduced in 5G for Uplink to improve coverage?", options: { A: "pi/2 BPSK", B: "256-QAM", C: "1024-QAM", D: "QPSK" }, ans: "A" },
+            { id: 333, q: "What is 'Network Slicing' identifier?", options: { A: "IMSI", B: "S-NSSAI", C: "GUTI", D: "RNTI" }, ans: "B" },
+            { id: 334, q: "Which is a Low Power Wide Area Network (LPWAN) tech?", options: { A: "Wi-Fi 6", B: "Bluetooth", C: "LTE-M / eMTC", D: "HSPA" }, ans: "C" },
+            { id: 335, q: "5G 'Mini-slots' are used for:", options: { A: "eMBB", B: "Low Latency (URLLC)", C: "mMTC", D: "Roaming" }, ans: "B" },
+            { id: 336, q: "What is 'Beam Sweeping'?", options: { A: "Cleaning antennas", B: "Transmitting beams in different directions sequentially", C: "Turning off beams", D: "Using one beam only" }, ans: "B" },
+            { id: 337, q: "Open RAN (O-RAN) aims to:", options: { A: "Close interfaces", B: "Standardize open interfaces between RAN components", C: "Use only one vendor", D: "Remove antennas" }, ans: "B" },
+            { id: 338, q: "5G Non-Terrestrial Networks (NTN) involve:", options: { A: "Underwater cables", B: "Satellites and HAPS", C: "Underground tunnels", D: "Fiber optic" }, ans: "B" },
+            { id: 339, q: "What is the 'F1' interface in 5G?", options: { A: "Between CU and DU", B: "Between gNodeB and 5GC", C: "Between UE and gNodeB", D: "Between two UEs" }, ans: "A" },
+            { id: 340, q: "Which numerology (mu) uses 15 kHz SCS?", options: { A: "0", B: "1", C: "2", D: "3" }, ans: "A" },
+            { id: 341, q: "Time Sensitive Networking (TSN) support in 5G is crucial for:", options: { A: "Video streaming", B: "Industrial Automation", C: "Web browsing", D: "SMS" }, ans: "B" },
+            { id: 342, q: "Which node stores unstructured data in 5G Core?", options: { A: "UDR", B: "UDSF", C: "NWDAF", D: "NEF" }, ans: "B" },
+            { id: 343, q: "The 'NEF' (Network Exposure Function) allows:", options: { A: "Hackers to enter", B: "External apps to interact with 5G Core securely", C: "Internal signaling", D: "Voice calls" }, ans: "B" },
+            { id: 344, q: "RedCap (Reduced Capability) devices are:", options: { A: "High-end phones", B: "Mid-tier IoT devices (wearables, cameras)", C: "Base stations", D: "Core routers" }, ans: "B" },
+            { id: 345, q: "What does 'eCPRI' interface connect?", options: { A: "Core to Internet", B: "BBU to RRH (Radio Unit)", C: "Phone to Phone", D: "MME to HSS" }, ans: "B" },
+            { id: 346, q: "Carrier Aggregation can combine:", options: { A: "FDD and TDD bands", B: "Only FDD bands", C: "Only TDD bands", D: "Only contiguous bands" }, ans: "A" },
+            { id: 347, q: "Which spectrum is best for wide area coverage?", options: { A: "Low Band (<1 GHz)", B: "Mid Band (3.5 GHz)", C: "High Band (28 GHz)", D: "THz Band" }, ans: "A" },
+            { id: 348, q: "What is 'Grant-Free Access' used for in 5G?", options: { A: "Streaming movies", B: "Fast uplink transmission for URLLC/IoT", C: "Billing", D: "Roaming" }, ans: "B" },
+            { id: 349, q: "Which entity collects analytics data in 5G?", options: { A: "AMF", B: "NWDAF", C: "UPF", D: "AUSF" }, ans: "B" },
+            { id: 350, q: "What is a 'BWP' (Bandwidth Part)?", options: { A: "A subset of the total cell bandwidth assigned to a UE", B: "A physical cable", C: "A core network node", D: "A type of antenna" }, ans: "A" },
+            { id: 351, q: "Which 5G state allows quick resumption of data without full setup?", options: { A: "RRC Idle", B: "RRC Inactive", C: "RRC Connected", D: "Power Off" }, ans: "B" },
+            { id: 352, q: "Dynamic Spectrum Sharing (DSS) allows:", options: { A: "4G and 5G to share the same spectrum simultaneously", B: "Wi-Fi and 5G sharing", C: "Sharing batteries", D: "Sharing passwords" }, ans: "A" },
+            { id: 353, q: "The Service Based Interface (SBI) uses which protocol?", options: { A: "Diameter", B: "HTTP/2 (JSON)", C: "SS7", D: "GTP" }, ans: "B" },
+            { id: 354, q: "MEC (Multi-access Edge Computing) is primarily for:", options: { A: "Reducing Latency", B: "Increasing Range", C: "Lowering Data Rate", D: "Voice Quality" }, ans: "A" },
+            { id: 355, q: "Which is an example of a C-V2X application?", options: { A: "Platooning", B: "Web surfing", C: "Email", D: "Banking" }, ans: "A" },
+            { id: 356, q: "What is the purpose of 'SSB' (Synchronization Signal Block)?", options: { A: "User data", B: "Cell search and synchronization", C: "Upload", D: "Encryption" }, ans: "B" },
+            { id: 357, q: "Which code is used for 5G Data Channels?", options: { A: "Turbo Code", B: "LDPC (Low Density Parity Check)", C: "Convolutional Code", D: "Hamming Code" }, ans: "B" },
+            { id: 358, q: "Which code is used for 5G Control Channels?", options: { A: "Polar Code", B: "Turbo Code", C: "LDPC", D: "BCH" }, ans: "A" },
+            { id: 359, q: "What replaces the 'Bearer' concept in 5G QoS?", options: { A: "Tunnel", B: "QoS Flow", C: "Circuit", D: "Packet" }, ans: "B" },
+            { id: 360, q: "Which frequency band is 'C-Band' (approx)?", options: { A: "700 MHz", B: "3.3 - 4.2 GHz", C: "28 GHz", D: "60 GHz" }, ans: "B" }
         ];
 
         // Passages 1-8 (Set 1 Paragraph)
@@ -507,6 +592,190 @@
             }
         ];
 
+        // Passages 25-32 (Set 4 Paragraph)
+        const paragraphMCQsSet4 = [
+            {
+                title: "Passage 25: Wireless Channel Impairments",
+                text: "Wireless signals suffer from 'Path Loss' (power reduction with distance), 'Shadowing' (blockage by obstacles), and 'Fading' (fluctuations due to multipath). 'Multipath' causes 'Inter-Symbol Interference' (ISI) if delay spread is large. 'Doppler Shift' occurs due to mobility, causing frequency spread. 'Coherence Time' is the time duration over which the channel is stable. If symbol time > coherence time, 'Fast Fading' occurs.",
+                questions: [
+                    { id: 281, q: "What causes Inter-Symbol Interference (ISI)?", options: { A: "Doppler Shift", B: "Multipath Delay Spread", C: "Path Loss", D: "Shadowing" }, ans: "B" },
+                    { id: 282, q: "Doppler Shift is primarily caused by:", options: { A: "Relative motion between TX and RX", B: "Reflection", C: "Diffraction", D: "Scattering" }, ans: "A" },
+                    { id: 283, q: "If the channel changes faster than the symbol duration, it is called:", options: { A: "Slow Fading", B: "Fast Fading", C: "Flat Fading", D: "No Fading" }, ans: "B" },
+                    { id: 284, q: "Large Scale Fading includes:", options: { A: "Rayleigh Fading", B: "Path Loss and Shadowing", C: "Rician Fading", D: "Fast Fading" }, ans: "B" },
+                    { id: 285, q: "Coherence Time is related to:", options: { A: "Channel Bandwidth", B: "Doppler Spread (Mobility)", C: "Antenna Height", D: "Power" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 26: GSM Network Architecture",
+                text: "GSM uses 'TDMA/FDMA'. The 'Base Station Subsystem' (BSS) comprises 'BTS' (Tower) and 'BSC' (Controller). The 'Network Subsystem' (NSS) includes 'MSC' (Switching), 'HLR' (Home Database), 'VLR' (Visitor Database), 'AUC' (Auth), and 'EIR' (Equipment check). The 'Um' interface is the air interface. The 'Abis' connects BTS-BSC, and 'A' connects BSC-MSC. Handovers are 'Hard Handovers'.",
+                questions: [
+                    { id: 286, q: "Which interface is between BTS and BSC?", options: { A: "Um", B: "Abis", C: "A", D: "B" }, ans: "B" },
+                    { id: 287, q: "Which node handles radio resource allocation and handover decisions in GSM?", options: { A: "BTS", B: "BSC", C: "MSC", D: "HLR" }, ans: "B" },
+                    { id: 288, q: "The 'A' interface connects:", options: { A: "BSS to NSS (BSC to MSC)", B: "BTS to BSC", C: "Phone to Tower", D: "MSC to HLR" }, ans: "A" },
+                    { id: 289, q: "GSM is primarily:", options: { A: "Circuit Switched", B: "Packet Switched", C: "VoIP", D: "Analog" }, ans: "A" },
+                    { id: 290, q: "Which database holds the user's permanent profile?", options: { A: "VLR", B: "HLR", C: "EIR", D: "AUC" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 27: CDMA Principles",
+                text: "CDMA (IS-95/3G) uses 'Spread Spectrum'. All users share the same frequency and time. They are separated by 'Orthogonal Codes' (Walsh) for downlink and 'PN Codes' for separation. Power Control is vital to solve the 'Near-Far Problem', where a close user drowns out a far user. It uses 'Soft Handoff' (Make-before-break) and 'Rake Receivers' to combine multipath components.",
+                questions: [
+                    { id: 291, q: "Why is Power Control critical in CDMA?", options: { A: "To save battery", B: "To solve Near-Far Problem", C: "To increase heat", D: "To reduce code length" }, ans: "B" },
+                    { id: 292, q: "What does a Rake Receiver do?", options: { A: "Ignores multipath", B: "Combines multipath signal energy constructively", C: "Increases noise", D: "Transmits signals" }, ans: "B" },
+                    { id: 293, q: "Walsh codes are used for:", options: { A: "Spreading and Orthogonality (Channelization)", B: "Encryption", C: "Compression", D: "Error correction" }, ans: "A" },
+                    { id: 294, q: "Soft Handoff involves communicating with:", options: { A: "Only one BS", B: "Multiple BSs simultaneously", C: "Satellites", D: "Wi-Fi" }, ans: "B" },
+                    { id: 295, q: "Spread Spectrum results in a bandwidth that is:", options: { A: "Much wider than signal bandwidth", B: "Narrower than signal", C: "Same as signal", D: "Zero" }, ans: "A" }
+                ]
+            },
+            {
+                title: "Passage 28: Antenna Theory Basics",
+                text: "Antennas convert electrical currents to EM waves. 'Gain' measures directivity and efficiency compared to an isotropic source (dBi). 'Beamwidth' is the angle between half-power points (-3dB). A 'Dipole' has a donut-shaped pattern. 'Smart Antennas' use arrays to form beams. 'Polarization' (Vertical/Horizontal) must match between TX and RX for max signal.",
+                questions: [
+                    { id: 296, q: "If TX is Vertical and RX is Horizontal polarized, the loss is:", options: { A: "0 dB", B: "3 dB", C: "Very High (Polarization Mismatch)", D: "Negative" }, ans: "C" },
+                    { id: 297, q: "An isotropic antenna has a gain of:", options: { A: "0 dBi", B: "3 dBi", C: "10 dBi", D: "Infinite" }, ans: "A" },
+                    { id: 298, q: "Beamwidth is usually defined at which power level?", options: { A: "-10 dB", B: "-3 dB (Half Power)", C: "0 dB", D: "-20 dB" }, ans: "B" },
+                    { id: 299, q: "High Gain antennas typically have:", options: { A: "Wide Beamwidth", B: "Narrow Beamwidth", C: "Omnidirectional pattern", D: "No pattern" }, ans: "B" },
+                    { id: 300, q: "A Smart Antenna system capable of tracking a user is:", options: { A: "Sector Antenna", B: "Beamforming Array", C: "Dipole", D: "Monopole" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 29: LTE Frame Structure",
+                text: "LTE uses OFDMA in Downlink and SC-FDMA in Uplink. The frame is 10ms long, divided into 10 subframes (1ms each). Each subframe has 2 slots (0.5ms). A 'Resource Block' (RB) is the smallest unit assigned, consisting of 12 subcarriers (180 kHz) for 1 slot. LTE supports FDD (Frequency Division) and TDD (Time Division) modes.",
+                questions: [
+                    { id: 301, q: "What is the duration of one LTE Slot?", options: { A: "1 ms", B: "0.5 ms", C: "10 ms", D: "5 ms" }, ans: "B" },
+                    { id: 302, q: "A Resource Block (RB) consists of how many subcarriers?", options: { A: "6", B: "12", C: "24", D: "48" }, ans: "B" },
+                    { id: 303, q: "Why is SC-FDMA used in Uplink?", options: { A: "Higher speed", B: "Lower PAPR (Peak-to-Average Power Ratio) for battery saving", C: "Better spectral efficiency", D: "Easier modulation" }, ans: "B" },
+                    { id: 304, q: "Total bandwidth of one RB is:", options: { A: "15 kHz", B: "180 kHz", C: "1.4 MHz", D: "20 MHz" }, ans: "B" },
+                    { id: 305, q: "In TDD LTE, Uplink and Downlink share:", options: { A: "Different Frequencies", B: "Same Frequency at different times", C: "Different Codes", D: "Different Antennas" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 30: Handover Mechanics",
+                text: "Handover (HO) maintains calls during mobility. In 'Mobile Assisted Handover' (MAHO) used in GSM/LTE, the phone measures neighbors and reports to the network. The network decides when to HO. 'Hysteresis' adds a margin to prevent 'Ping-Pong' effect (rapid switching). 'Blind Handover' is when no measurement is done (rare). Inter-RAT HO is between different techs (e.g., 4G to 3G).",
+                questions: [
+                    { id: 306, q: "What prevents the Ping-Pong effect in Handover?", options: { A: "Hysteresis Margin", B: "High Power", C: "Fast switching", D: "Turning off phone" }, ans: "A" },
+                    { id: 307, q: "In MAHO, who makes the final decision?", options: { A: "Mobile Station", B: "Network (Base Station/BSC/MME)", C: "User", D: "Satellite" }, ans: "B" },
+                    { id: 308, q: "Inter-RAT Handover means switching between:", options: { A: "Two cells of same tech", B: "Two different technologies (e.g., LTE to GSM)", C: "Two antennas", D: "Uplink and Downlink" }, ans: "B" },
+                    { id: 309, q: "What does the mobile measure?", options: { A: "Signal Strength (RSSI/RSRP) and Quality", B: "Battery level of tower", C: "Wind speed", D: "Tower height" }, ans: "A" },
+                    { id: 310, q: "Hard Handover causes:", options: { A: "No break", B: "Short interruption (Break-before-make)", C: "Double connection", D: "Faster data" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 31: Wireless Capacity and Erlang",
+                text: "Capacity planning uses 'Erlang B' (blocked calls cleared) or 'Erlang C' (blocked calls queued) models. One 'Erlang' represents 1 hour of continuous traffic. 'Trunking' increases efficiency. To increase capacity: Cell Splitting, Sectoring, or Microcells. 'Spectral Efficiency' is measured in bits/sec/Hz.",
+                questions: [
+                    { id: 311, q: "One Erlang corresponds to:", options: { A: "1 call per minute", B: "100% channel occupancy (3600 call-seconds/hour)", C: "Zero traffic", D: "10 users" }, ans: "B" },
+                    { id: 312, q: "Spectral Efficiency unit is:", options: { A: "Watts", B: "bps/Hz", C: "Hz/sec", D: "dBm" }, ans: "B" },
+                    { id: 313, q: "Erlang B assumes blocked calls are:", options: { A: "Queued", B: "Lost/Cleared", C: "Retried immediately", D: "Forwarded" }, ans: "B" },
+                    { id: 314, q: "Trunking efficiency improves when:", options: { A: "Number of channels increases", B: "Number of channels decreases", C: "Users transmit less", D: "Bandwidth is zero" }, ans: "A" },
+                    { id: 315, q: "Which technique increases capacity by creating new cells?", options: { A: "Sectoring", B: "Cell Splitting", C: "Modulation", D: "Coding" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 32: Satellite Communication Basics",
+                text: "Satellites are LEO (Low Earth Orbit), MEO (Medium), or GEO (Geostationary). GEO stays fixed above equator, has high latency (~250ms one way), and covers large areas. LEO is closer (500-2000km), has low latency, but moves fast relative to earth, requiring constellations (e.g., Starlink). 5G 'NTN' integrates satellites into 3GPP standards.",
+                questions: [
+                    { id: 316, q: "Which orbit provides the lowest latency?", options: { A: "GEO", B: "MEO", C: "LEO", D: "HEO" }, ans: "C" },
+                    { id: 317, q: "A GEO satellite appears:", options: { A: "Stationary from Earth", B: "To move fast across sky", C: "Only at night", D: "Randomly" }, ans: "A" },
+                    { id: 318, q: "Main disadvantage of GEO for voice/gaming?", options: { A: "Coverage", B: "High Latency/Delay", C: "Cost", D: "Lifetime" }, ans: "B" },
+                    { id: 319, q: "5G NTN stands for:", options: { A: "New Tower Network", B: "Non-Terrestrial Network", C: "Near Tower Node", D: "National Telecom Network" }, ans: "B" },
+                    { id: 320, q: "LEO satellites require:", options: { A: "No handover", B: "Frequent handovers as they move", C: "Fixed antennas", D: "No power" }, ans: "B" }
+                ]
+            }
+        ];
+
+        // Passages 33-40 (Set 5 Paragraph)
+        const paragraphMCQsSet5 = [
+            {
+                title: "Passage 33: 5G Numerology and Frame Structure",
+                text: "5G NR is flexible. Unlike LTE's fixed 15kHz SCS, 5G supports SCS = 15 * 2^mu kHz (15, 30, 60, 120, 240 kHz). Higher SCS means shorter slot duration (Low Latency) but is sensitive to delay spread. 'Mini-slots' (2, 4, or 7 symbols) support URLLC by allowing transmission to start immediately without waiting for a slot boundary.",
+                questions: [
+                    { id: 361, q: "If mu=1, what is the SCS?", options: { A: "15 kHz", B: "30 kHz", C: "60 kHz", D: "120 kHz" }, ans: "B" },
+                    { id: 362, q: "Higher SCS results in:", options: { A: "Longer slot duration", B: "Shorter slot duration", C: "Lower bandwidth", D: "More latency" }, ans: "B" },
+                    { id: 363, q: "Mini-slots are primarily designed for:", options: { A: "eMBB", B: "URLLC (Low Latency)", C: "mMTC", D: "Broadcast" }, ans: "B" },
+                    { id: 364, q: "A flexible frame structure allows 5G to:", options: { A: "Support diverse use cases (eMBB, URLLC)", B: "Use only one frequency", C: "Reduce speed", D: "Ignore timing" }, ans: "A" },
+                    { id: 365, q: "For mmWave (FR2), typical SCS is:", options: { A: "15 kHz", B: "60 or 120 kHz", C: "30 kHz", D: "1 kHz" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 34: Cellular V2X (C-V2X)",
+                text: "C-V2X enables vehicle communication. V2V (Vehicle-to-Vehicle) prevents collisions. V2I (Vehicle-to-Infrastructure) talks to traffic lights. V2P (Pedestrian) protects walkers. V2N (Network) connects to cloud. Modes: Mode 3 (Network scheduled) and Mode 4 (Autonomous/SideLink). SideLink uses the PC5 interface for direct communication without passing through the network.",
+                questions: [
+                    { id: 366, q: "The PC5 interface is used for:", options: { A: "Direct Device-to-Device (SideLink)", B: "Connecting to Tower", C: "Connecting to Internet", D: "Charging" }, ans: "A" },
+                    { id: 367, q: "V2I refers to communication with:", options: { A: "Other Cars", B: "Infrastructure (e.g., Traffic Lights)", C: "Pedestrians", D: "Satellites" }, ans: "B" },
+                    { id: 368, q: "Mode 4 in C-V2X allows:", options: { A: "Autonomous direct communication (No network needed)", B: "Network controlled comms", C: "Wi-Fi only", D: "No communication" }, ans: "A" },
+                    { id: 369, q: "Which interface connects Vehicle to the Network (V2N)?", options: { A: "PC5", B: "Uu (Standard Air Interface)", C: "X2", D: "Bluetooth" }, ans: "B" },
+                    { id: 370, q: "Main goal of V2V is:", options: { A: "Streaming music", B: "Road Safety / Collision Avoidance", C: "Downloading maps", D: "Toll payment" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 35: IoT Technologies: NB-IoT vs LTE-M",
+                text: "NB-IoT (Narrowband IoT) uses 200kHz bandwidth, offers deep coverage (good for basements), very low power, but low speed/mobility. LTE-M (eMTC) uses 1.4MHz, supports higher speed, voice (VoLTE), and mobility. Both operate in licensed spectrum. LoRaWAN/Sigfox are unlicensed non-3GPP alternatives.",
+                questions: [
+                    { id: 371, q: "Which tech supports Voice (VoLTE)?", options: { A: "NB-IoT", B: "LTE-M", C: "Sigfox", D: "LoRa" }, ans: "B" },
+                    { id: 372, q: "NB-IoT bandwidth is approximately:", options: { A: "180-200 kHz", B: "1.4 MHz", C: "5 MHz", D: "20 MHz" }, ans: "A" },
+                    { id: 373, q: "Which is better for stationary sensors in deep basements?", options: { A: "LTE-M", B: "NB-IoT", C: "5G eMBB", D: "Wi-Fi" }, ans: "B" },
+                    { id: 374, q: "NB-IoT and LTE-M operate in:", options: { A: "Unlicensed Spectrum", B: "Licensed Spectrum", C: "TV White Space", D: "Satellite bands only" }, ans: "B" },
+                    { id: 375, q: "Which supports better mobility (moving vehicles)?", options: { A: "NB-IoT", B: "LTE-M", C: "Sigfox", D: "Zigbee" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 36: Network Slicing Architecture",
+                text: "Network Slicing creates virtual networks on physical hardware. A slice is identified by S-NSSAI (Single Network Slice Selection Assistance Information). It consists of SST (Slice/Service Type) and SD (Slice Differentiator). SST 1 = eMBB, SST 2 = URLLC, SST 3 = MIoT. The 'NSSF' (Network Slice Selection Function) helps the AMF select the right slice for a user.",
+                questions: [
+                    { id: 376, q: "SST value 1 corresponds to:", options: { A: "URLLC", B: "eMBB", C: "MIoT", D: "V2X" }, ans: "B" },
+                    { id: 377, q: "Which node selects the appropriate slice instance?", options: { A: "UPF", B: "NSSF", C: "UDM", D: "PCRF" }, ans: "B" },
+                    { id: 378, q: "SST value 2 is for:", options: { A: "eMBB", B: "URLLC", C: "IoT", D: "Voice" }, ans: "B" },
+                    { id: 379, q: "Can a UE connect to multiple slices simultaneously?", options: { A: "No", B: "Yes (up to 8)", C: "Only one at a time", D: "Only in roaming" }, ans: "B" },
+                    { id: 380, q: "Slicing allows optimization for:", options: { A: "One service only", B: "Diverse requirements (Speed vs Latency vs Density)", C: "Only voice", D: "Only Internet" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 37: Massive MIMO and Beamforming",
+                text: "Massive MIMO uses large arrays (e.g., 64T64R). It enables 'Multi-User MIMO' (MU-MIMO), serving multiple users on the same resource block by separating them spatially using beams. 'Analog Beamforming' uses phase shifters (common in mmWave). 'Digital Beamforming' is more flexible but power-hungry. 'Hybrid' combines both.",
+                questions: [
+                    { id: 381, q: "MU-MIMO allows:", options: { A: "One user per RB", B: "Multiple users on same time/freq resource", C: "Different frequencies", D: "Time sharing" }, ans: "B" },
+                    { id: 382, q: "Analog Beamforming is typically used in:", options: { A: "Sub-6 GHz", B: "mmWave (due to cost/power)", C: "AM Radio", D: "Baseband" }, ans: "B" },
+                    { id: 383, q: "Digital Beamforming offers:", options: { A: "Lowest power", B: "Max flexibility (beam per subcarrier)", C: "Lowest cost", D: "Simplest hardware" }, ans: "B" },
+                    { id: 384, q: "64T64R means:", options: { A: "64 Antennas total", B: "64 Transmit and 64 Receive chains", C: "64 Users", D: "64 MHz" }, ans: "B" },
+                    { id: 385, q: "Spatial Multiplexing gains are maximized when channel is:", options: { A: "Line of Sight only", B: "Rich Scattering environment", C: "Vacuum", D: "Noisy" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 38: Open RAN (O-RAN)",
+                text: "Traditional RAN uses proprietary BBU and RRH. O-RAN disaggregates BBU into 'CU' (Central Unit) and 'DU' (Distributed Unit) and opens the 'Fronthaul' interface (7.2x split). The 'RIC' (RAN Intelligent Controller) allows AI apps (xApps/rApps) to optimize the network. This enables mixing vendors (e.g., Vendor A radio, Vendor B software).",
+                questions: [
+                    { id: 386, q: "The main goal of O-RAN is:", options: { A: "Single vendor lock-in", B: "Open interfaces and vendor diversity", C: "Higher cost", D: "Closed proprietary hardware" }, ans: "B" },
+                    { id: 387, q: "The RIC stands for:", options: { A: "Radio Interface Card", B: "RAN Intelligent Controller", C: "Remote Internet Core", D: "Radio Internal Circuit" }, ans: "B" },
+                    { id: 388, q: "CU handles:", options: { A: "Real-time PHY", B: "Non-real-time / Higher layers (RRC, PDCP)", C: "Antennas", D: "RF amplification" }, ans: "B" },
+                    { id: 389, q: "DU handles:", options: { A: "Core network", B: "Real-time layers (RLC, MAC, High-PHY)", C: "Billing", D: "Subscriber data" }, ans: "B" },
+                    { id: 390, q: "xApps in O-RAN run on:", options: { A: "UE", B: "Near-Real-Time RIC", C: "Antenna", D: "Core" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 39: 5G Security Deep Dive",
+                text: "Security in 5G is 'Zero Trust'. 'SUCI' protects privacy. 'SEPP' (Security Edge Protection Proxy) filters traffic between roaming partners (replacing 4G DEA). 'AKA' (Authentication and Key Agreement) is used (5G-AKA or EAP-AKA'). Integrity protection is now supported for User Plane data (optional), not just Control Plane.",
+                questions: [
+                    { id: 391, q: "SEPP is used for:", options: { A: "User authentication", B: "Securing Inter-operator (Roaming) interfaces", C: "Radio encryption", D: "Voice encoding" }, ans: "B" },
+                    { id: 392, q: "User Plane Integrity Protection in 5G is:", options: { A: "Mandatory", B: "Optional/Configurable", C: "Not supported", D: "Same as 4G" }, ans: "B" },
+                    { id: 393, q: "Which protocol protects the roaming interface (N32)?", options: { A: "IPsec/TLS + PRINS", B: "Plain HTTP", C: "Telnet", D: "WEP" }, ans: "A" },
+                    { id: 394, q: "The anchor key in the USIM is:", options: { A: "K", B: "SUCI", C: "GUTI", D: "IP" }, ans: "A" },
+                    { id: 395, q: "Primary authentication in 5G is between:", options: { A: "UE and Network", B: "UE and Internet", C: "Base Station and Antenna", D: "Two phones" }, ans: "A" }
+                ]
+            },
+            {
+                title: "Passage 40: 6G Vision",
+                text: "6G (IMT-2030) targets 'THz' comms (0.1-10 THz) for 100+ Gbps. It aims for 'Internet of Senses' (haptic, smell), 'Holographic Telepresence', and 'Digital Twins'. Latency target is 0.1ms. It will likely use 'Visible Light Communication' (Li-Fi) and 'Compute-Network Convergence' where network nodes also compute data.",
+                questions: [
+                    { id: 396, q: "Typical 6G peak data rate target is:", options: { A: "1 Gbps", B: "1 Tbps", C: "10 Mbps", D: "100 kbps" }, ans: "B" },
+                    { id: 397, q: "Which spectrum is new for 6G?", options: { A: "UHF", B: "Terahertz (THz)", C: "VHF", D: "MF" }, ans: "B" },
+                    { id: 398, q: "Internet of Senses refers to:", options: { A: "Web browsing", B: "Transmitting touch, taste, smell digitally", C: "Using sensors", D: "Video calls" }, ans: "B" },
+                    { id: 399, q: "Li-Fi uses:", options: { A: "Radio waves", B: "Visible Light / Optical", C: "Sound", D: "X-Rays" }, ans: "B" },
+                    { id: 400, q: "6G latency target is:", options: { A: "10 ms", B: "1 ms", C: "0.1 ms (Sub-ms)", D: "1 sec" }, ans: "C" }
+                ]
+            }
+        ];
+
         // --- GLOBAL STATE ---
         let currentSet = 1;
 
@@ -546,12 +815,12 @@
             document.getElementById('current-set-label').innerText = `Set ${setNumber}`;
 
             // Update Tab Styles
-            [1, 2, 3].forEach(num => {
+            [1, 2, 3, 4, 5].forEach(num => {
                 const btn = document.getElementById(`btn-set${num}`);
                 if (num === setNumber) {
-                    btn.className = "px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-blue-600 text-white shadow-md ring-2 ring-blue-600 ring-offset-1";
+                    btn.className = "px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-blue-600 text-white shadow-md ring-2 ring-blue-600 ring-offset-1";
                 } else {
-                    btn.className = "px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-white text-blue-600 border border-blue-200 hover:bg-gray-50";
+                    btn.className = "px-4 py-2 rounded-lg font-bold text-sm transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-white text-blue-600 border border-blue-200 hover:bg-gray-50";
                 }
             });
 
@@ -563,9 +832,15 @@
             } else if (setNumber === 2) {
                 simpleQuestions = simpleMCQsSet2;
                 paragraphQuestions = paragraphMCQsSet2;
-            } else {
+            } else if (setNumber === 3) {
                 simpleQuestions = simpleMCQsSet3;
                 paragraphQuestions = paragraphMCQsSet3;
+            } else if (setNumber === 4) {
+                simpleQuestions = simpleMCQsSet4;
+                paragraphQuestions = paragraphMCQsSet4;
+            } else {
+                simpleQuestions = simpleMCQsSet5;
+                paragraphQuestions = paragraphMCQsSet5;
             }
 
             // Render Section A
