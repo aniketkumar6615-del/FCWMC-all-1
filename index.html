@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireless & Mobile Communication Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .correct-answer {
+            background-color: #d1fae5; /* green-100 */
+            border-color: #10b981; /* green-500 */
+            color: #065f46; /* green-800 */
+        }
+        .incorrect-answer {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #ef4444; /* red-500 */
+            color: #991b1b; /* red-800 */
+        }
+        .question-card {
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-6 shadow-md sticky top-0 z-10">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold">Wireless & Mobile Communication</h1>
+                <p class="text-blue-100 text-sm">Foundation Course Mock Test | 80 Questions</p>
+            </div>
+            <div id="score-display" class="hidden text-right">
+                <p class="text-3xl font-bold"><span id="score-value">0</span>/80</p>
+                <p class="text-sm text-blue-200" id="percentage-value">0%</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-6 space-y-8">
+
+        <!-- Instructions -->
+        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+            <h2 class="text-lg font-semibold mb-2">Instructions</h2>
+            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                <li>This test consists of <strong>80 questions</strong>.</li>
+                <li><strong>Section A:</strong> 40 Simple MCQs.</li>
+                <li><strong>Section B:</strong> 40 Paragraph-Based MCQs (read the passage first).</li>
+                <li>Click <strong>Submit Test</strong> at the bottom to see your score and correct answers.</li>
+            </ul>
+        </div>
+
+        <!-- Section A Container -->
+        <div id="section-a-container" class="space-y-6">
+            <div class="border-b-2 border-gray-200 pb-2 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Section A: Simple MCQs</h2>
+            </div>
+            <!-- Questions injected via JS -->
+        </div>
+
+        <!-- Section B Container -->
+        <div id="section-b-container" class="space-y-8 mt-12">
+            <div class="border-b-2 border-gray-200 pb-2 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Section B: Paragraph-Based MCQs</h2>
+            </div>
+            <!-- Passages and Questions injected via JS -->
+        </div>
+
+        <!-- Actions -->
+        <div class="py-8 text-center">
+            <button onclick="submitTest()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Submit Test
+            </button>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="ml-4 text-gray-500 hover:text-gray-700 underline">
+                Back to Top
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // --- DATA SOURCE ---
+        const sectionA = [
+            { id: 1, q: "Which of the following is a characteristic of wired communication?", options: { A: "High mobility", B: "High interference", C: "High reliability and security", D: "Shared medium" }, ans: "C" },
+            { id: 2, q: "Which frequency band is primarily used for Satellite Communication and 5G?", options: { A: "VLF (Very Low Frequency)", B: "HF (High Frequency)", C: "SHF/EHF (Super/Extremely High Frequency)", D: "LF (Low Frequency)" }, ans: "C" },
+            { id: 3, q: "In which modulation technique does the amplitude of the carrier wave vary while frequency and phase remain constant?", options: { A: "FM", B: "PM", C: "AM", D: "QAM" }, ans: "C" },
+            { id: 4, q: "What is the primary advantage of Digital Signals over Analog Signals?", options: { A: "They are continuous in nature", B: "They are more prone to noise", C: "They are easier to store and less affected by noise", D: "They consume more bandwidth" }, ans: "C" },
+            { id: 5, q: "Which digital modulation technique varies both amplitude and phase to encode data?", options: { A: "BPSK", B: "QPSK", C: "QAM", D: "ASK" }, ans: "C" },
+            { id: 6, q: "Which multiple access technique assigns a unique code to each user to allow simultaneous transmission?", options: { A: "TDMA", B: "FDMA", C: "CDMA", D: "OFDMA" }, ans: "C" },
+            { id: 7, q: "What is 'Frequency Reuse' in cellular networks?", options: { A: "Using the same frequency in adjacent cells", B: "Using the same frequency in geographically separated cells to reduce interference", C: "Increasing the power of the base station", D: "Allocating all frequencies to a single user" }, ans: "B" },
+            { id: 8, q: "The process of transferring an active call from one base station to another is called:", options: { A: "Roaming", B: "Paging", C: "Handover (Handoff)", D: "Trunking" }, ans: "C" },
+            { id: 9, q: "Which generation of mobile networks introduced pure packet-switching (All-IP)?", options: { A: "2G", B: "3G", C: "4G", D: "1G" }, ans: "C" },
+            { id: 10, q: "In LTE architecture, which entity handles mobility management and authentication?", options: { A: "SGW", B: "PGW", C: "MME", D: "eNodeB" }, ans: "C" },
+            { id: 11, q: "What is the primary function of the HSS (Home Subscriber Server)?", options: { A: "Routing data packets", B: "Storing user subscription and authentication data", C: "Managing radio resources", D: "Assigning IP addresses" }, ans: "B" },
+            { id: 12, q: "Which interface connects the eNodeB to the MME?", options: { A: "S1-U", B: "S1-MME", C: "X2", D: "SGi" }, ans: "B" },
+            { id: 13, q: "Which 4G component assigns the IP address to the User Equipment (UE)?", options: { A: "MME", B: "eNodeB", C: "SGW", D: "PGW" }, ans: "D" },
+            { id: 14, q: "What type of handover is primarily used in LTE networks?", options: { A: "Soft Handover", B: "Hard Handover (Break-before-make)", C: "Softer Handover", D: "Analog Handover" }, ans: "B" },
+            { id: 15, q: "Which protocol layer in LTE performs header compression and encryption?", options: { A: "PHY", B: "MAC", C: "RLC", D: "PDCP" }, ans: "D" },
+            { id: 16, q: "Which 5G use case focuses on ultra-low latency (<1 ms) and high reliability?", options: { A: "eMBB", B: "mMTC", C: "URLLC", D: "VoLTE" }, ans: "C" },
+            { id: 17, q: "Which 5G core function is responsible for Session Management and IP allocation?", options: { A: "AMF", B: "UPF", C: "SMF", D: "UDM" }, ans: "C" },
+            { id: 18, q: "What is the key difference between 5G NSA (Non-Standalone) and SA (Standalone)?", options: { A: "NSA uses a 5G Core, SA uses a 4G Core", B: "NSA relies on the 4G LTE Core anchor, SA uses a pure 5G Core", C: "NSA is faster than SA", D: "SA does not support beamforming" }, ans: "B" },
+            { id: 19, q: "Massive MIMO technology primarily improves network performance by:", options: { A: "Using a single large antenna", B: "Using dozens/hundreds of antennas to serve multiple users simultaneously", C: "Reducing the frequency bandwidth", D: "eliminating the need for base stations" }, ans: "B" },
+            { id: 20, q: "Which technology allows network functions to run as software on standard servers instead of dedicated hardware?", options: { A: "SDN", B: "MIMO", C: "NFV", D: "GPS" }, ans: "C" },
+            { id: 21, q: "What does 'latency' refer to in mobile networks?", options: { A: "The speed of data download", B: "The time delay between sending and receiving data", C: "The amount of data consumed", D: "The strength of the signal" }, ans: "B" },
+            { id: 22, q: "Which frequency range is known as 'mmWave' in 5G?", options: { A: "3 kHz - 30 kHz", B: "30 MHz - 300 MHz", C: "24 GHz - 100 GHz", D: "1 GHz - 5 GHz" }, ans: "C" },
+            { id: 23, q: "What is the function of the 'Control Plane' in LTE/5G?", options: { A: "Carrying user video and audio data", B: "Managing signaling, mobility, and authentication", C: "Compressing files for download", D: "Displaying the UI on the phone" }, ans: "B" },
+            { id: 24, q: "Which modulation scheme is most efficient for high data rates but most sensitive to noise?", options: { A: "BPSK", B: "QPSK", C: "16-QAM", D: "256-QAM" }, ans: "D" },
+            { id: 25, q: "The concept of dividing a cell into 3 or 6 directional sectors to reduce interference is called:", options: { A: "Cell Splitting", B: "Sectoring", C: "Trunking", D: "Roaming" }, ans: "B" },
+            { id: 26, q: "What is 'Edge Computing'?", options: { A: "Processing data in a centralized cloud far away", B: "Processing data closer to the user/source to reduce latency", C: "Using the edges of the frequency spectrum", D: "Computing on the physical edge of a phone" }, ans: "B" },
+            { id: 27, q: "In the context of 5G, what does mMTC stand for?", options: { A: "massive Mobile Traffic Control", B: "mini Mobile Tele-Communication", C: "Massive Machine-Type Communication", D: "modern Mobile Technology Core" }, ans: "C" },
+            { id: 28, q: "Which identifier in 5G replaces the IMSI to improve privacy and security?", options: { A: "IMEI", B: "SUCI (Subscription Concealed Identifier)", C: "IP Address", D: "MAC Address" }, ans: "B" },
+            { id: 29, q: "What is the X2 interface used for in LTE?", options: { A: "Connecting eNodeB to the Internet", B: "Connecting UE to eNodeB", C: "Direct communication between two eNodeBs", D: "Connecting MME to HSS" }, ans: "C" },
+            { id: 30, q: "Which layer of the LTE protocol stack handles ARQ (Automatic Repeat Request) error correction?", options: { A: "PHY", B: "MAC", C: "RLC", D: "NAS" }, ans: "C" },
+            { id: 31, q: "VoLTE (Voice over LTE) uses which type of bearer?", options: { A: "Default Bearer", B: "Dedicated Bearer", C: "Signaling Bearer", D: "Analog Bearer" }, ans: "B" },
+            { id: 32, q: "Which of the following is a target goal for 6G networks?", options: { A: "100 Mbps speed", B: "Integration of Terahertz (THz) communication", C: "10 ms latency", D: "Circuit Switching" }, ans: "B" },
+            { id: 33, q: "What is 'Network Slicing'?", options: { A: "Physically cutting fiber cables", B: "Creating multiple virtual networks on a single physical infrastructure", C: "Reducing the bandwidth of a network", D: "Dividing a cell into micro-cells" }, ans: "B" },
+            { id: 34, q: "Which component in the 5G Core is the equivalent of the MME in 4G (handling mobility/registration)?", options: { A: "UPF", B: "SMF", C: "AMF", D: "PCF" }, ans: "C" },
+            { id: 35, q: "OFDMA stands for:", options: { A: "Orthogonal Frequency Division Multiple Access", B: "Open Frequency Division Multiple Access", C: "Organized Frequency Data Mobile Access", D: "Orthogonal Frequency Data Modulation" }, ans: "A" },
+            { id: 36, q: "Which of the following is NOT a benefit of SDN (Software Defined Networking)?", options: { A: "Centralized control", B: "Programmability", C: "Hardware dependency", D: "Automation" }, ans: "C" },
+            { id: 37, q: "A 'Default Bearer' in LTE is established when:", options: { A: "The user starts a video call", B: "The UE initially attaches to the network", C: "The user moves to a new cell", D: "The battery is low" }, ans: "B" },
+            { id: 38, q: "The 'SGW' (Serving Gateway) acts as an anchor point for:", options: { A: "Inter-eNodeB mobility (Handover)", B: "Connecting to the internet", C: "Storing user passwords", D: "Assigning IP addresses" }, ans: "A" },
+            { id: 39, q: "Which type of handover is 'Make-before-break'?", options: { A: "Hard Handover", B: "Soft Handover", C: "Blind Handover", D: "Forced Handover" }, ans: "B" },
+            { id: 40, q: "TDD (Time Division Duplexing) allows uplink and downlink to share the spectrum by:", options: { A: "Using different frequencies", B: "Using different codes", C: "Using different time slots on the same frequency", D: "Using different antennas" }, ans: "C" }
+        ];
+
+        const sectionBPassages = [
+            {
+                title: "Passage 1: Modulation Techniques",
+                text: "Modulation is the process of varying the properties of a periodic waveform, called the carrier signal, with a modulating signal that contains information to be transmitted. In Amplitude Modulation (AM), the amplitude of the carrier varies, while frequency remains constant. It is simple but prone to noise. Frequency Modulation (FM) varies the frequency of the carrier, offering better noise immunity. In modern digital communications, Phase Shift Keying (PSK) and Quadrature Amplitude Modulation (QAM) are used. QAM varies both amplitude and phase, allowing for higher data rates but requiring a higher Signal-to-Noise Ratio (SNR).",
+                questions: [
+                    { id: 41, q: "Why is FM preferred over AM for music broadcasting?", options: { A: "It uses less bandwidth", B: "It has better noise immunity and sound quality", C: "It has a longer range", D: "It is cheaper to implement" }, ans: "B" },
+                    { id: 42, q: "Which modulation technique would be best for a 5G network requiring extremely high data speeds, assuming a clean signal environment?", options: { A: "BPSK", B: "QPSK", C: "16-QAM", D: "256-QAM" }, ans: "D" },
+                    { id: 43, q: "If a system uses QAM, which parameters of the carrier wave are being manipulated?", options: { A: "Frequency and Phase", B: "Amplitude and Frequency", C: "Amplitude and Phase", D: "Only Phase" }, ans: "C" },
+                    { id: 44, q: "Which statement is true regarding the trade-off in QAM?", options: { A: "Higher order QAM (e.g., 64-QAM) is more robust against noise than lower order QAM.", B: "Higher order QAM provides lower data rates.", C: "Higher order QAM offers higher data rates but is more sensitive to noise/interference.", D: "QAM is only used for analog signals." }, ans: "C" },
+                    { id: 45, q: "For a satellite link with very low signal strength and high noise, which modulation is most suitable?", options: { A: "256-QAM", B: "BPSK (Binary PSK)", C: "64-QAM", D: "16-QAM" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 2: Cellular Concepts",
+                text: "A cellular network divides a geographic area into 'cells,' each served by a base station. To maximize the use of limited frequency spectrum, 'Frequency Reuse' is employed, where the same frequencies are reused in non-adjacent cells. As a user moves from one cell to another, 'Handover' ensures the call is not dropped. To handle increased traffic in dense urban areas, techniques like 'Cell Splitting' (dividing a cell into smaller micro-cells) and 'Sectoring' (using directional antennas) are used to increase capacity and reduce interference.",
+                questions: [
+                    { id: 46, q: "What is the primary purpose of 'Frequency Reuse'?", options: { A: "To save electricity", B: "To increase the system capacity using limited spectrum", C: "To improve the sound quality of voice calls", D: "To prevent users from roaming" }, ans: "B" },
+                    { id: 47, q: "A network engineer notices that a specific cell is overwhelmed with too many users. Which technique should they apply to increase capacity in that specific area?", options: { A: "Increase the transmit power", B: "Cell Splitting", C: "Switch off the base station", D: "Reduce the frequency bandwidth" }, ans: "B" },
+                    { id: 48, q: "In Sectoring, how is interference reduced?", options: { A: "By using omnidirectional antennas", B: "By using directional antennas to focus energy in specific directions (120° or 60°)", C: "By increasing the cell radius", D: "By using analog signals" }, ans: "B" },
+                    { id: 49, q: "If a user is driving on a highway and moves from Cell A to Cell B without the call disconnecting, what process has occurred?", options: { A: "Cell Splitting", B: "Trunking", C: "Handover", D: "Paging" }, ans: "C" },
+                    { id: 50, q: "What is a potential disadvantage of Cell Splitting?", options: { A: "It reduces the number of handovers", B: "It requires more base stations and increases handover frequency", C: "It decreases the overall network capacity", D: "It makes the cells larger" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 3: 4G LTE Architecture",
+                text: "The 4G LTE network consists of the Evolved Packet Core (EPC) and the Radio Access Network (E-UTRAN). The EPC is an all-IP network containing the MME (Mobility Management Entity), SGW (Serving Gateway), PGW (Packet Data Network Gateway), and HSS (Home Subscriber Server). The MME handles the Control Plane (signaling), while the SGW and PGW handle the User Plane (data). The eNodeB is the base station that connects wirelessly to the user.",
+                questions: [
+                    { id: 51, q: "A user's phone is trying to register with the network. Which EPC node will verify the user's identity credentials?", options: { A: "SGW", B: "PGW", C: "MME (interacting with HSS)", D: "eNodeB" }, ans: "C" },
+                    { id: 52, q: "Data packets arriving from the Internet destined for a user phone will first arrive at which core node?", options: { A: "MME", B: "HSS", C: "PGW", D: "SGW" }, ans: "C" },
+                    { id: 53, q: "If a user wants to browse the internet, which plane handles the actual website data transfer?", options: { A: "Control Plane", B: "User Plane", C: "Signaling Plane", D: "Management Plane" }, ans: "B" },
+                    { id: 54, q: "Why is the separation of Control Plane (MME) and User Plane (SGW/PGW) beneficial?", options: { A: "It makes the hardware cheaper", B: "It allows independent scaling of signaling and data traffic", C: "It eliminates the need for IP addresses", D: "It allows the use of analog signals" }, ans: "B" },
+                    { id: 55, q: "Which node acts as the mobility anchor when a user moves between different eNodeBs?", options: { A: "HSS", B: "MME", C: "SGW", D: "PGW" }, ans: "C" }
+                ]
+            },
+            {
+                title: "Passage 4: 5G Use Cases (The 5G Triangle)",
+                text: "5G is defined by three distinct use case categories. Enhanced Mobile Broadband (eMBB) focuses on high data rates and coverage for things like 4K streaming. Ultra-Reliable Low-Latency Communication (URLLC) focuses on mission-critical applications requiring <1ms latency and high reliability. Massive Machine-Type Communication (mMTC) supports connection densities of millions of devices per square kilometer, ideal for IoT, focusing on low power and low cost.",
+                questions: [
+                    { id: 56, q: "A remote surgery application requires the robotic arm to react instantly to the surgeon's movements. Which 5G category is essential here?", options: { A: "eMBB", B: "mMTC", C: "URLLC", D: "VoNR" }, ans: "C" },
+                    { id: 57, q: "A smart city installs 50,000 sensors to monitor air quality and trash levels. These sensors send small amounts of data occasionally and need 10-year battery life. Which 5G category fits best?", options: { A: "eMBB", B: "mMTC", C: "URLLC", D: "HSPA" }, ans: "B" },
+                    { id: 58, q: "A user wants to stream a live Virtual Reality (VR) concert in 8K resolution. This requires:", options: { A: "mMTC", B: "URLLC", C: "eMBB", D: "GSM" }, ans: "C" },
+                    { id: 59, q: "Which use case would prioritize 'Connection Density' over 'Speed'?", options: { A: "eMBB", B: "URLLC", C: "mMTC", D: "Wi-Fi" }, ans: "C" },
+                    { id: 60, q: "Self-driving cars communicating with traffic lights to avoid accidents is an example of:", options: { A: "URLLC", B: "eMBB", C: "Analog Communication", D: "2G Services" }, ans: "A" }
+                ]
+            },
+            {
+                title: "Passage 5: 5G Core and Service Based Architecture",
+                text: "The 5G Core (5GC) moves away from the traditional box-based architecture of 4G to a Service-Based Architecture (SBA). Key functions include the AMF (Access and Mobility Management Function), SMF (Session Management Function), and UPF (User Plane Function). This architecture separates the Control Plane (AMF/SMF) completely from the User Plane (UPF), enabling 'CUPS' (Control and User Plane Separation). This allows the UPF to be placed closer to the user (Edge Computing) for lower latency.",
+                questions: [
+                    { id: 61, q: "Which 5G node is logically equivalent to the MME in 4G regarding mobility management?", options: { A: "SMF", B: "UPF", C: "AMF", D: "UDM" }, ans: "C" },
+                    { id: 62, q: "If a network operator wants to reduce latency for a gaming application, where should they deploy the UPF?", options: { A: "At the central core only", B: "At the Network Edge (Edge Computing)", C: "In the HSS", D: "In the Billing System" }, ans: "B" },
+                    { id: 63, q: "The function responsible for IP address allocation and PDU session management in 5G is:", options: { A: "AMF", B: "SMF", C: "UPF", D: "PCF" }, ans: "B" },
+                    { id: 64, q: "What is the main advantage of CUPS (Control and User Plane Separation)?", options: { A: "It merges all functions into one server", B: "It allows flexible placement of the data plane (UPF) for better performance without moving the control plane", C: "It returns to circuit switching", D: "It increases the latency" }, ans: "B" },
+                    { id: 65, q: "In SBA, how do different network functions (NFs) communicate?", options: { A: "Via proprietary cables", B: "Via APIs (HTTP/JSON)", C: "Via physical circuit switches", D: "Via analog signals" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 6: Multiple Access Technologies",
+                text: "FDMA divides the spectrum into frequency channels. TDMA divides time into slots. CDMA uses unique spreading codes, allowing users to transmit on the same frequency at the same time. OFDMA, used in 4G and 5G, divides the channel into many orthogonal subcarriers. This allows for high spectral efficiency and robustness against multipath fading.",
+                questions: [
+                    { id: 66, q: "In which system do users transmit at the same time and same frequency, separated only by codes?", options: { A: "FDMA", B: "TDMA", C: "CDMA", D: "Analog" }, ans: "C" },
+                    { id: 67, q: "Why is OFDMA preferred for 4G/5G broadband?", options: { A: "It is the simplest to implement", B: "It handles multipath interference well and offers high spectral efficiency", C: "It requires accurate time synchronization like TDMA", D: "It supports only voice calls" }, ans: "B" },
+                    { id: 68, q: "If a TDMA system loses time synchronization, what is the likely result?", options: { A: "Users will overlap in time, causing interference (collisions)", B: "The frequency bandwidth will increase", C: "The power will decrease", D: "Nothing, timing is not important in TDMA" }, ans: "A" },
+                    { id: 69, q: "Which technology was the basis for 3G networks?", options: { A: "OFDMA", B: "FDMA", C: "CDMA (WCDMA/CDMA2000)", D: "Analog" }, ans: "C" },
+                    { id: 70, q: "What does 'Orthogonal' mean in OFDMA?", options: { A: "The subcarriers interfere with each other", B: "The subcarriers are spaced such that they do not interfere with each other", C: "The subcarriers are far apart", D: "The signals are digital" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 7: Advanced 5G Technologies",
+                text: "To achieve the high targets of 5G, new hardware technologies are used. 'Massive MIMO' uses large arrays of antennas to serve many users. 'Beamforming' focuses the wireless signal directly toward a specific user rather than broadcasting it in all directions. 'mmWave' frequencies (24-100 GHz) provide huge bandwidth but suffer from high propagation loss and blockage by obstacles.",
+                questions: [
+                    { id: 71, q: "Why is Beamforming important in 5G, especially at high frequencies?", options: { A: "To make the towers look better", B: "To overcome signal loss (attenuation) by focusing energy", C: "To broadcast the signal to everyone equally", D: "To reduce the data speed" }, ans: "B" },
+                    { id: 72, q: "Which is a major limitation of mmWave technology?", options: { A: "Low data speed", B: "High latency", C: "Poor penetration through walls and obstacles", D: "Cannot carry data" }, ans: "C" },
+                    { id: 73, q: "Massive MIMO contributes to 5G performance by:", options: { A: "Reducing the number of antennas needed", B: "Increasing Spectral Efficiency and Capacity", C: "Switching back to 2G speeds", D: "Eliminating the need for a core network" }, ans: "B" },
+                    { id: 74, q: "Deployment of mmWave 5G is best suited for:", options: { A: "Rural areas with few users", B: "Dense urban hotspots or stadiums", C: "Long-distance communication", D: "Submarine communication" }, ans: "B" },
+                    { id: 75, q: "How does Massive MIMO differ from traditional MIMO?", options: { A: "It uses fewer antennas", B: "It uses significantly more antennas (e.g., 64T64R) at the base station", C: "It is only used for uplink", D: "It is slower" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 8: Future Trends and Networking",
+                text: "Future networks are moving towards software-based control. 'SDN' (Software Defined Networking) separates the control plane from the data plane, allowing centralized software control. 'NFV' (Network Function Virtualization) replaces dedicated hardware appliances with software running on generic servers. Security is also enhanced in 5G with unified authentication and privacy. Looking ahead, 6G is expected to utilize Terahertz (THz) frequencies and integrate AI natively into the network.",
+                questions: [
+                    { id: 76, q: "A telecom operator replaces their physical firewalls and routers with software running on a standard cloud server. This is an example of:", options: { A: "SDN", B: "MIMO", C: "NFV", D: "Beamforming" }, ans: "C" },
+                    { id: 77, q: "What is the primary characteristic of the SDN architecture?", options: { A: "Integrating control and data planes tightly", B: "Decoupling (separating) the Control Plane from the Data Plane", C: "Using only hardware-based controllers", D: "Removing the need for software" }, ans: "B" },
+                    { id: 78, q: "What frequency band is anticipated for 6G networks?", options: { A: "kHz", B: "MHz", C: "GHz", D: "THz (Terahertz)" }, ans: "D" },
+                    { id: 79, q: "How does AI integration benefit future networks (6G)?", options: { A: "By manually configuring routers", B: "By enabling self-optimizing and self-healing networks", C: "By slowing down data rates", D: "By increasing power consumption" }, ans: "B" },
+                    { id: 80, q: "In the context of 5G security, what is the benefit of using SUCI?", options: { A: "It speeds up the internet", B: "It prevents attackers from tracking a user's identity (IMSI catcher protection)", C: "It replaces the IP address", D: "It allows free roaming" }, ans: "B" }
+                ]
+            }
+        ];
+
+        // --- RENDERING LOGIC ---
+        const sectionAContainer = document.getElementById('section-a-container');
+        const sectionBContainer = document.getElementById('section-b-container');
+
+        // Helper to create Question HTML
+        function createQuestionHTML(qData) {
+            return `
+                <div class="question-card bg-white p-6 rounded-lg shadow-sm border border-gray-200" id="card-${qData.id}" data-correct="${qData.ans}">
+                    <div class="flex items-start">
+                        <span class="font-bold text-blue-600 mr-3 text-lg">${qData.id}.</span>
+                        <div>
+                            <p class="font-medium text-lg mb-4 text-gray-800">${qData.q}</p>
+                            <div class="space-y-2">
+                                ${Object.keys(qData.options).map(key => `
+                                    <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-gray-50 transition">
+                                        <input type="radio" name="q${qData.id}" value="${key}" class="form-radio h-5 w-5 text-blue-600 focus:ring-blue-500">
+                                        <span class="text-gray-700"><strong>${key})</strong> ${qData.options[key]}</span>
+                                    </label>
+                                `).join('')}
+                            </div>
+                            <div class="feedback hidden mt-3 font-semibold p-2 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Section A
+        sectionA.forEach(q => {
+            sectionAContainer.innerHTML += createQuestionHTML(q);
+        });
+
+        // Render Section B
+        sectionBPassages.forEach(passage => {
+            const passageHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-xl text-indigo-700 mb-2">${passage.title}</h3>
+                    <p class="text-gray-700 leading-relaxed">${passage.text}</p>
+                </div>
+            `;
+            const questionsHTML = passage.questions.map(q => createQuestionHTML(q)).join('<div class="my-4"></div>');
+            
+            const groupWrapper = document.createElement('div');
+            groupWrapper.innerHTML = passageHTML + '<div class="space-y-6">' + questionsHTML + '</div>';
+            sectionBContainer.appendChild(groupWrapper);
+        });
+
+        // --- SCORING LOGIC ---
+        function submitTest() {
+            let score = 0;
+            const totalQuestions = 80;
+            let allAnswered = true; // Optional: could check if all are answered
+
+            // Process all question cards
+            const cards = document.querySelectorAll('.question-card');
+            
+            cards.forEach(card => {
+                const id = card.id.replace('card-', '');
+                const correctAnswer = card.getAttribute('data-correct');
+                const selectedOption = document.querySelector(`input[name="q${id}"]:checked`);
+                const feedbackDiv = card.querySelector('.feedback');
+                
+                // Reset styling
+                card.classList.remove('correct-answer', 'incorrect-answer');
+                feedbackDiv.classList.add('hidden');
+                
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    
+                    if (userAnswer === correctAnswer) {
+                        score++;
+                        card.classList.add('correct-answer');
+                        feedbackDiv.textContent = "Correct!";
+                        feedbackDiv.classList.remove('hidden', 'text-red-700');
+                        feedbackDiv.classList.add('text-green-700');
+                    } else {
+                        card.classList.add('incorrect-answer');
+                        feedbackDiv.textContent = `Incorrect. Correct answer: ${correctAnswer}`;
+                        feedbackDiv.classList.remove('hidden', 'text-green-700');
+                        feedbackDiv.classList.add('text-red-700');
+                    }
+                } else {
+                    // Not answered
+                    card.classList.add('border-red-300'); // distinct style for unanswered
+                    feedbackDiv.textContent = `Not answered. Correct answer: ${correctAnswer}`;
+                    feedbackDiv.classList.remove('hidden');
+                    feedbackDiv.classList.add('text-red-700');
+                }
+            });
+
+            // Display Score
+            const percentage = ((score / totalQuestions) * 100).toFixed(1);
+            document.getElementById('score-value').innerText = score;
+            document.getElementById('percentage-value').innerText = `${percentage}%`;
+            document.getElementById('score-display').classList.remove('hidden');
+
+            // Scroll to top to see score
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
