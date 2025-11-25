@@ -21,58 +21,77 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 font-sans pb-20">
 
     <!-- Header -->
-    <header class="bg-blue-700 text-white p-6 shadow-md sticky top-0 z-10">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <header class="bg-blue-800 text-white p-6 shadow-md sticky top-0 z-10">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div>
-                <h1 class="text-2xl font-bold">Wireless & Mobile Communication(by Adi Bhai)</h1>
-                <p class="text-blue-100 text-sm">Foundation Course Mock Test | 80 Questions</p>
+                <h1 class="text-3xl font-extrabold tracking-tight">Wireless & Mobile Communication</h1>
+                <p class="text-blue-200 text-sm mt-1">Foundation Course Mock Test | Created by <span class="text-yellow-300 font-bold">Adi Bhai</span></p>
             </div>
-            <div id="score-display" class="hidden text-right">
-                <p class="text-3xl font-bold"><span id="score-value">0</span>/80</p>
-                <p class="text-sm text-blue-200" id="percentage-value">0%</p>
+            <div id="score-display" class="hidden text-right bg-blue-900 px-4 py-2 rounded-lg border border-blue-700">
+                <p class="text-xs text-blue-300 uppercase font-semibold">Score</p>
+                <div class="flex items-baseline justify-end gap-2">
+                    <span class="text-3xl font-bold text-white" id="score-value">0</span>
+                    <span class="text-lg text-blue-300">/ 80</span>
+                </div>
+                <p class="text-sm font-bold text-yellow-400" id="percentage-value">0%</p>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto p-6 space-y-8">
+    <main class="max-w-5xl mx-auto p-6 space-y-8">
+
+        <!-- Set Selection Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+            <button id="btn-set1" onclick="switchSet(1)" class="px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Set 1 (Q1-80)
+            </button>
+            <button id="btn-set2" onclick="switchSet(2)" class="px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Set 2 (Q81-160)
+            </button>
+            <button id="btn-set3" onclick="switchSet(3)" class="px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Set 3 (Q161-240)
+            </button>
+        </div>
 
         <!-- Instructions -->
-        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-            <h2 class="text-lg font-semibold mb-2">Instructions</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-yellow-400">
+            <h2 class="text-lg font-bold text-gray-800 mb-2">Instructions</h2>
             <ul class="list-disc list-inside text-gray-600 space-y-1">
-                <li>This test consists of <strong>80 questions</strong>.</li>
-                <li><strong>Section A:</strong> 40 Simple MCQs.</li>
-                <li><strong>Section B:</strong> 40 Paragraph-Based MCQs (read the passage first).</li>
-                <li>Click <strong>Submit Test</strong> at the bottom to see your score and correct answers.</li>
+                <li>Currently viewing: <strong><span id="current-set-label">Set 1</span></strong></li>
+                <li>Each set consists of <strong>80 questions</strong> (40 Simple + 40 Paragraph-Based).</li>
+                <li>Read the paragraphs in Section B carefully before answering.</li>
+                <li>Click <strong>Submit Test</strong> at the bottom to score the current set.</li>
             </ul>
         </div>
 
         <!-- Section A Container -->
         <div id="section-a-container" class="space-y-6">
-            <div class="border-b-2 border-gray-200 pb-2 mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Section A: Simple MCQs</h2>
+            <div class="flex items-center gap-4 pb-2 mb-6 border-b-2 border-gray-200">
+                <div class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">A</div>
+                <h2 class="text-2xl font-bold text-gray-800">Simple MCQs</h2>
             </div>
             <!-- Questions injected via JS -->
         </div>
 
         <!-- Section B Container -->
-        <div id="section-b-container" class="space-y-8 mt-12">
-            <div class="border-b-2 border-gray-200 pb-2 mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Section B: Paragraph-Based MCQs</h2>
+        <div id="section-b-container" class="space-y-8 mt-16">
+            <div class="flex items-center gap-4 pb-2 mb-6 border-b-2 border-gray-200">
+                <div class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">B</div>
+                <h2 class="text-2xl font-bold text-gray-800">Paragraph-Based MCQs</h2>
             </div>
             <!-- Passages and Questions injected via JS -->
         </div>
 
         <!-- Actions -->
-        <div class="py-8 text-center">
-            <button onclick="submitTest()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg z-20 flex justify-center gap-4">
+            <button onclick="submitTest()" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-10 rounded-full shadow-md transform transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                 Submit Test
             </button>
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="ml-4 text-gray-500 hover:text-gray-700 underline">
-                Back to Top
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold py-3 px-6 rounded-full transition">
+                ↑ Top
             </button>
         </div>
 
@@ -80,7 +99,8 @@
 
     <script>
         // --- DATA SOURCE ---
-        const sectionA = [
+        // Questions 1-40 (Set 1 Simple)
+        const simpleMCQsSet1 = [
             { id: 1, q: "Which of the following is a characteristic of wired communication?", options: { A: "High mobility", B: "High interference", C: "High reliability and security", D: "Shared medium" }, ans: "C" },
             { id: 2, q: "Which frequency band is primarily used for Satellite Communication and 5G?", options: { A: "VLF (Very Low Frequency)", B: "HF (High Frequency)", C: "SHF/EHF (Super/Extremely High Frequency)", D: "LF (Low Frequency)" }, ans: "C" },
             { id: 3, q: "In which modulation technique does the amplitude of the carrier wave vary while frequency and phase remain constant?", options: { A: "FM", B: "PM", C: "AM", D: "QAM" }, ans: "C" },
@@ -123,7 +143,96 @@
             { id: 40, q: "TDD (Time Division Duplexing) allows uplink and downlink to share the spectrum by:", options: { A: "Using different frequencies", B: "Using different codes", C: "Using different time slots on the same frequency", D: "Using different antennas" }, ans: "C" }
         ];
 
-        const sectionBPassages = [
+        // Questions 81-120 (Set 2 Simple)
+        const simpleMCQsSet2 = [
+            { id: 81, q: "What is the approximate frequency range of ELF (Extremely Low Frequency)?", options: { A: "3 to 30 Hz", B: "30 to 300 kHz", C: "300 MHz to 3 GHz", D: "24 GHz to 52 GHz" }, ans: "A" },
+            { id: 82, q: "Which term describes a signal that has not yet been modulated (original info)?", options: { A: "Broadband", B: "Passband", C: "Baseband", D: "Sideband" }, ans: "C" },
+            { id: 83, q: "In 16-QAM, how many bits are transmitted per symbol?", options: { A: "2 bits", B: "4 bits", C: "6 bits", D: "8 bits" }, ans: "B" },
+            { id: 84, q: "Which AM radio application uses the frequency band 540 kHz - 1.6 MHz?", options: { A: "Aviation", B: "AM Radio Broadcasting", C: "Maritime", D: "Satellite" }, ans: "B" },
+            { id: 85, q: "What is the phase shift difference between symbols in BPSK?", options: { A: "45 degrees", B: "90 degrees", C: "180 degrees", D: "360 degrees" }, ans: "C" },
+            { id: 86, q: "Which handover type involves changing the frequency band (e.g., 900MHz to 1800MHz)?", options: { A: "Intra-frequency", B: "Inter-frequency", C: "Soft", D: "Softer" }, ans: "B" },
+            { id: 87, q: "The 'S1-U' interface in LTE connects which two nodes?", options: { A: "eNodeB and MME", B: "eNodeB and SGW", C: "SGW and PGW", D: "MME and HSS" }, ans: "B" },
+            { id: 88, q: "Which modulation technique is used for LTE Uplink to save power?", options: { A: "OFDMA", B: "SC-FDMA", C: "CDMA", D: "QAM" }, ans: "B" },
+            { id: 89, q: "What does the 'Xn' interface connect in 5G?", options: { A: "gNodeB to AMF", B: "gNodeB to UPF", C: "gNodeB to gNodeB", D: "UE to gNodeB" }, ans: "C" },
+            { id: 90, q: "Which RLC mode is best suited for Voice over LTE (VoLTE) where some packet loss is acceptable but latency isn't?", options: { A: "Acknowledged Mode (AM)", B: "Unacknowledged Mode (UM)", C: "Transparent Mode (TM)", D: "Secure Mode (SM)" }, ans: "B" },
+            { id: 91, q: "What is the primary function of the 'NG' interface in 5G?", options: { A: "Connecting gNodeB to 5G Core", B: "Connecting UE to gNodeB", C: "Connecting two gNodeBs", D: "Connecting 4G to 5G" }, ans: "A" },
+            { id: 92, q: "In 6G, which technology involves walls reflecting signals to improve coverage?", options: { A: "MIMO", B: "RIS (Reconfigurable Intelligent Surfaces)", C: "SDR", D: "Small Cells" }, ans: "B" },
+            { id: 93, q: "Which 5G feature allows different virtual networks for different use cases on same hardware?", options: { A: "Network Slicing", B: "Carrier Aggregation", C: "Dual Connectivity", D: "Beamforming" }, ans: "A" },
+            { id: 94, q: "Which bearer type has a Guaranteed Bit Rate (GBR)?", options: { A: "Default Bearer", B: "Dedicated Bearer (e.g. for Video)", C: "Signaling Bearer", D: "Initial Bearer" }, ans: "B" },
+            { id: 95, q: "What is the typical latency target for 4G LTE?", options: { A: "1 ms", B: "10-50 ms", C: "500 ms", D: "1 second" }, ans: "B" },
+            { id: 96, q: "Which entity in 4G is responsible for 'Paging' idle users?", options: { A: "MME", B: "SGW", C: "HSS", D: "PGW" }, ans: "A" },
+            { id: 97, q: "In 5G, the 'User Plane Function' (UPF) can be deployed at the edge. What is this concept called?", options: { A: "Cloud Computing", B: "Edge Computing", C: "Core Centralization", D: "Remote Access" }, ans: "B" },
+            { id: 98, q: "Which multiple access scheme was used in 2G GSM?", options: { A: "CDMA", B: "TDMA/FDMA", C: "OFDMA", D: "SDMA" }, ans: "B" },
+            { id: 99, q: "What is the disadvantage of 'Hard Handover'?", options: { A: "It uses more resources", B: "It is complex", C: "Brief interruption of service (ping-pong effect)", D: "It requires two radios" }, ans: "C" },
+            { id: 100, q: "Which sub-layer of Layer 2 performs 'HARQ' (Hybrid ARQ)?", options: { A: "PDCP", B: "RLC", C: "MAC", D: "PHY" }, ans: "C" },
+            { id: 101, q: "64-QAM carries how many bits per symbol?", options: { A: "4", B: "5", C: "6", D: "8" }, ans: "C" },
+            { id: 102, q: "Which organization defines the LTE and 5G standards?", options: { A: "IEEE", B: "3GPP", C: "ISO", D: "ITU" }, ans: "B" },
+            { id: 103, q: "What does 'SBA' stand for in 5G Core?", options: { A: "Service Based Architecture", B: "System Base Access", C: "Secure Broadband Access", D: "Signal Beam Antenna" }, ans: "A" },
+            { id: 104, q: "Which technology is essential for 'Holographic Communication' in 6G?", options: { A: "Sub-1GHz bands", B: "THz bands (Terahertz)", C: "FM Radio", D: "3G Codecs" }, ans: "B" },
+            { id: 105, q: "In 5G SA (Standalone), which node anchors the control plane?", options: { A: "eNodeB", B: "gNodeB", C: "Wi-Fi Router", D: "BSC" }, ans: "B" },
+            { id: 106, q: "What does 'Hybrid Beamforming' combine?", options: { A: "AM and FM", B: "Analog and Digital Beamforming", C: "Uplink and Downlink", D: "Voice and Data" }, ans: "B" },
+            { id: 107, q: "Which security feature protects the user's IMSI in 5G?", options: { A: "WEP", B: "WPA2", C: "SUCI", D: "HTTPS" }, ans: "C" },
+            { id: 108, q: "The 'Control Plane' in SDN is:", options: { A: "Distributed", B: "Centralized", C: "Hardware-based", D: "Analog" }, ans: "B" },
+            { id: 109, q: "Which 4G interface is used for Legal Interception and connecting to the Internet?", options: { A: "S1-MME", B: "SGi", C: "X2", D: "S1-U" }, ans: "B" },
+            { id: 110, q: "What represents 'Logic' in the SDN architecture?", options: { A: "Router Hardware", B: "SDN Controller", C: "Fiber Cables", D: "Power Supply" }, ans: "B" },
+            { id: 111, q: "Which of these is a 'VLF' application?", options: { A: "Submarine Communication", B: "FM Radio", C: "Satellite TV", D: "Wi-Fi" }, ans: "A" },
+            { id: 112, q: "What is 'ROHC' in the PDCP layer?", options: { A: "Robust Header Compression", B: "Radio Over Hard Cable", C: "Routing Of Home Calls", D: "Real-time Online Handover Control" }, ans: "A" },
+            { id: 113, q: "Which key is used to authenticate a user SIM card?", options: { A: "Public Key", B: "Ki (Secret Key)", C: "IP Key", D: "MAC Key" }, ans: "B" },
+            { id: 114, q: "In OFDMA, 'Guard Bands' are replaced by:", options: { A: "Time slots", B: "Cyclic Prefix (CP)", C: "Codes", D: "Amplitude shifts" }, ans: "B" },
+            { id: 115, q: "The 'Paging' message is sent to a UE when it is in which state?", options: { A: "Active", B: "Idle", C: "Detached", D: "Off" }, ans: "B" },
+            { id: 116, q: "Which 5G feature is most relevant for 'Smart Factories'?", options: { A: "eMBB", B: "URLLC", C: "VoLTE", D: "Roaming" }, ans: "B" },
+            { id: 117, q: "What is the bandwidth of a single LTE Resource Block?", options: { A: "180 kHz", B: "5 MHz", C: "20 MHz", D: "100 GHz" }, ans: "A" },
+            { id: 118, q: "Which handover involves the 'Source eNodeB' directly talking to the 'Target eNodeB'?", options: { A: "S1 Handover", B: "X2 Handover", C: "Hard Handover", D: "Soft Handover" }, ans: "B" },
+            { id: 119, q: "What is 'Trunking Efficiency'?", options: { A: "Using more cables", B: "Serving more users with fewer channels statistically", C: "Increasing antenna height", D: "Reducing battery usage" }, ans: "B" },
+            { id: 120, q: "Which 5G node selects the UPF for a session?", options: { A: "AMF", B: "SMF", C: "UDM", D: "gNodeB" }, ans: "B" }
+        ];
+
+        // Questions 161-200 (Set 3 Simple)
+        const simpleMCQsSet3 = [
+            { id: 161, q: "Which cost is generally higher in Wired communication compared to Wireless?", options: { A: "Maintenance Cost", B: "Initial Installation/Deployment Cost", C: "Spectrum License Cost", D: "Battery Cost" }, ans: "B" },
+            { id: 162, q: "The 'HF' (High Frequency) band is primarily known for:", options: { A: "Shortwave Radio & Long-distance via Ionosphere", B: "Satellite TV", C: "Fiber Optics", D: "Submarine Navigation" }, ans: "A" },
+            { id: 163, q: "Which is a key disadvantage of Analog Signals?", options: { A: "Infinite resolution", B: "Harder to encrypt and store", C: "Uses binary numbers", D: "Requires less bandwidth" }, ans: "B" },
+            { id: 164, q: "In terms of storage, Digital Signals are:", options: { A: "Impossible to store", B: "Harder to store than Analog", C: "Easier to store and compress", D: "Stored on vinyl only" }, ans: "C" },
+            { id: 165, q: "A 'Baseband' signal typically has:", options: { A: "Very high frequency", B: "Zero or near-zero frequency range (Original Signal)", C: "Modulated frequency", D: "Gigahertz range" }, ans: "B" },
+            { id: 166, q: "What distinguishes 'Broadband' transmission?", options: { A: "Single signal on wire", B: "Multiple signals at different frequencies (Wide Bandwidth)", C: "Low speed", D: "Uses only 1 kHz" }, ans: "B" },
+            { id: 167, q: "Why is modulation necessary for antenna size?", options: { A: "To make antennas larger", B: "To allow practical, smaller antenna sizes (inversely proportional to frequency)", C: "To increase antenna weight", D: "To use wooden antennas" }, ans: "B" },
+            { id: 168, q: "Which requires more bandwidth: AM or FM?", options: { A: "AM", B: "FM", C: "Both are equal", D: "Neither uses bandwidth" }, ans: "B" },
+            { id: 169, q: "In Phase Modulation (PM), what changes?", options: { A: "Amplitude", B: "Frequency", C: "Phase of the carrier proportional to message", D: "Time" }, ans: "C" },
+            { id: 170, q: "Compared to FSK, PSK is generally:", options: { A: "Less power efficient", B: "More power efficient and bandwidth efficient", C: "Slower", D: "Used only for AM radio" }, ans: "B" },
+            { id: 171, q: "Which application commonly uses 256-QAM?", options: { A: "AM Radio", B: "Cable Modems and Wi-Fi 5/6", C: "Telegraphy", D: "2G Voice" }, ans: "B" },
+            { id: 172, q: "In FDMA, what is used to prevent interference between adjacent channels?", options: { A: "Time slots", B: "Guard Bands", C: "Codes", D: "Passwords" }, ans: "B" },
+            { id: 173, q: "What is a critical requirement for TDMA systems?", options: { A: "Code separation", B: "Precise Time Synchronization", C: "Frequency hopping", D: "Continuous transmission" }, ans: "B" },
+            { id: 174, q: "Spread Spectrum technology is the foundation of:", options: { A: "FDMA", B: "TDMA", C: "CDMA", D: "AM" }, ans: "C" },
+            { id: 175, q: "In OFDMA, 'Subcarriers' are:", options: { A: "Widely spaced", B: "Overlapping but Orthogonal", C: "Random", D: "Interfering" }, ans: "B" },
+            { id: 176, q: "A 'Cluster' in cellular networks refers to:", options: { A: "A single cell", B: "A group of cells using the complete set of available frequencies", C: "A group of users", D: "A type of antenna" }, ans: "B" },
+            { id: 177, q: "Which handoff is known as 'Seamless'?", options: { A: "Hard Handoff", B: "Soft Handoff", C: "Manual Handoff", D: "No Handoff" }, ans: "B" },
+            { id: 178, q: "Cell Splitting increases capacity by:", options: { A: "Increasing power", B: "Using smaller cells to reuse frequencies more often", C: "Reducing bandwidth", D: "Removing base stations" }, ans: "B" },
+            { id: 179, q: "A standard 3-sector cell uses antennas covering how many degrees each?", options: { A: "360", B: "180", C: "120", D: "90" }, ans: "C" },
+            { id: 180, q: "The 'Grade of Service' (GoS) measures:", options: { A: "Sound quality", B: "Probability of a call being blocked or delayed", C: "Internet speed", D: "Battery life" }, ans: "B" },
+            { id: 181, q: "1G Mobile Systems (like AMPS) were:", options: { A: "Digital", B: "Analog", C: "Packet Switched", D: "Broadband" }, ans: "B" },
+            { id: 182, q: "2G introduced which major feature?", options: { A: "Video Calling", B: "Digital Voice and SMS", C: "Broadband Internet", D: "App Stores" }, ans: "B" },
+            { id: 183, q: "The typical data rate for stationary 3G was up to:", options: { A: "10 Kbps", B: "2 Mbps", C: "1 Gbps", D: "100 Gbps" }, ans: "B" },
+            { id: 184, q: "One major improvement of 4G over 3G was:", options: { A: "Switching back to Analog", B: "Reduced Latency and Higher Speeds", C: "Voice only support", D: "Larger Phones" }, ans: "B" },
+            { id: 185, q: "The 'Control Plane' deals primarily with:", options: { A: "Payload Data", B: "Signaling messages (Setup, Teardown, Mobility)", C: "Video streaming", D: "Web browsing" }, ans: "B" },
+            { id: 186, q: "In LTE, the mobility anchor between 3G/2G and 4G is:", options: { A: "eNodeB", B: "SGW (Serving Gateway)", C: "HSS", D: "PCRF" }, ans: "B" },
+            { id: 187, q: "Which 4G node performs 'Packet Filtering' and 'Legal Interception'?", options: { A: "MME", B: "PGW", C: "eNodeB", D: "HSS" }, ans: "B" },
+            { id: 188, q: "The HSS communicates with MME using which protocol diameter interface?", options: { A: "S1-MME", B: "S6a", C: "X2", D: "S1-U" }, ans: "B" },
+            { id: 189, q: "Radio Resource Management (RRM) is a key function of:", options: { A: "MME", B: "SGW", C: "eNodeB", D: "HSS" }, ans: "C" },
+            { id: 190, q: "Downloading a 4K movie is an example of which 5G use case?", options: { A: "mMTC", B: "URLLC", C: "eMBB", D: "D2D" }, ans: "C" },
+            { id: 191, q: "Factory automation requiring 1ms response time uses:", options: { A: "eMBB", B: "URLLC", C: "mMTC", D: "GSM" }, ans: "B" },
+            { id: 192, q: "Smart Agriculture sensors in a large field use:", options: { A: "eMBB", B: "URLLC", C: "mMTC", D: "Fiber" }, ans: "C" },
+            { id: 193, q: "Which 5G function handles 'Access Control'?", options: { A: "UPF", B: "SMF", C: "AMF", D: "AUSF" }, ans: "C" },
+            { id: 194, q: "Who selects the UPF in 5G?", options: { A: "AMF", B: "SMF", C: "UE", D: "gNodeB" }, ans: "B" },
+            { id: 195, q: "The 'User Plane Function' (UPF) replaces which 4G nodes' data plane?", options: { A: "MME and HSS", B: "SGW and PGW", C: "eNodeB", D: "PCRF" }, ans: "B" },
+            { id: 196, q: "In 5G SA, the core network is:", options: { A: "EPC", B: "5GC (5G Core)", C: "ATM", D: "PSTN" }, ans: "B" },
+            { id: 197, q: "Massive MIMO uses:", options: { A: "1 Antenna", B: "2 Antennas", C: "Large array of antennas (e.g., 64, 128)", D: "No Antennas" }, ans: "C" },
+            { id: 198, q: "Beamforming improves signal by:", options: { A: "Broadcasting everywhere", B: "Focusing energy towards specific user", C: "Reducing power", D: "Using lower frequency" }, ans: "B" },
+            { id: 199, q: "SDN separates the Control Plane from the:", options: { A: "User Plane", B: "Data Plane (Forwarding Plane)", C: "Management Plane", D: "Power Plane" }, ans: "B" },
+            { id: 200, q: "NFV stands for:", options: { A: "Network Frequency Verification", B: "Network Function Virtualization", C: "New Fast Video", D: "Near Field Voice" }, ans: "B" }
+        ];
+
+        // Passages 1-8 (Set 1 Paragraph)
+        const paragraphMCQsSet1 = [
             {
                 title: "Passage 1: Modulation Techniques",
                 text: "Modulation is the process of varying the properties of a periodic waveform, called the carrier signal, with a modulating signal that contains information to be transmitted. In Amplitude Modulation (AM), the amplitude of the carrier varies, while frequency remains constant. It is simple but prone to noise. Frequency Modulation (FM) varies the frequency of the carrier, offering better noise immunity. In modern digital communications, Phase Shift Keying (PSK) and Quadrature Amplitude Modulation (QAM) are used. QAM varies both amplitude and phase, allowing for higher data rates but requiring a higher Signal-to-Noise Ratio (SNR).",
@@ -214,6 +323,193 @@
             }
         ];
 
+        // Passages 9-16 (Set 2 Paragraph)
+        const paragraphMCQsSet2 = [
+            {
+                title: "Passage 9: LTE Protocol Stack",
+                text: "The LTE Radio Protocol Stack is responsible for processing data between the UE and eNodeB. The 'PDCP' layer handles header compression (ROHC), ciphering, and integrity protection. Below it, the 'RLC' layer manages segmentation, reassembly, and ARQ error correction. It operates in three modes: Transparent Mode (TM), Unacknowledged Mode (UM), and Acknowledged Mode (AM). The 'MAC' layer handles scheduling and Hybrid ARQ (HARQ). The 'PHY' layer handles the actual coding and modulation.",
+                questions: [
+                    { id: 121, q: "Which layer is responsible for Ciphering and Integrity Protection?", options: { A: "PHY", B: "MAC", C: "RLC", D: "PDCP" }, ans: "D" },
+                    { id: 122, q: "Which RLC mode provides retransmission of lost packets (ARQ)?", options: { A: "TM", B: "UM", C: "AM", D: "PHY" }, ans: "C" },
+                    { id: 123, q: "What is the main function of the MAC layer?", options: { A: "Header Compression", B: "Scheduling and HARQ", C: "Encryption", D: "Modulation" }, ans: "B" },
+                    { id: 124, q: "Which layer performs 'Header Compression' to save bandwidth?", options: { A: "PDCP", B: "RLC", C: "MAC", D: "PHY" }, ans: "A" },
+                    { id: 125, q: "In the downlink, data flows in which order?", options: { A: "PHY -> MAC -> RLC -> PDCP", B: "PDCP -> RLC -> MAC -> PHY", C: "MAC -> RLC -> PDCP -> PHY", D: "RLC -> PDCP -> PHY -> MAC" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 10: 5G Deployment Models (SA vs NSA)",
+                text: "5G can be deployed as Non-Standalone (NSA) or Standalone (SA). NSA uses the existing 4G EPC core and 4G eNodeB as the master anchor for control signaling, while the 5G gNodeB boosts data speeds. This allows fast deployment. SA uses a new 5G Core (5GC) and gNodeB handles both control and user planes. SA enables full 5G features like Slicing and URLLC but is more expensive to deploy.",
+                questions: [
+                    { id: 126, q: "In NSA mode, which core network is used?", options: { A: "5G Core", B: "4G EPC", C: "3G Core", D: "Wi-Fi Core" }, ans: "B" },
+                    { id: 127, q: "Which deployment model supports 'Network Slicing' natively?", options: { A: "NSA", B: "SA", C: "LTE", D: "GSM" }, ans: "B" },
+                    { id: 128, q: "Why is NSA deployed first by many operators?", options: { A: "It is slower", B: "It requires replacing all towers", C: "It is faster/cheaper to deploy using existing 4G assets", D: "It offers better latency than SA" }, ans: "C" },
+                    { id: 129, q: "Which node handles the 'Control Plane' in 5G NSA?", options: { A: "gNodeB", B: "eNodeB (4G)", C: "Wi-Fi AP", D: "Satellite" }, ans: "B" },
+                    { id: 130, q: "What is the main benefit of SA over NSA?", options: { A: "Lower cost", B: "True 5G features (low latency, slicing)", C: "Uses 4G phones", D: "Slower speeds" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 11: 6G and Future Technologies",
+                text: "6G networks, expected around 2030, aim for 1 Tbps speeds and sub-0.1ms latency. Key enablers include 'Terahertz (THz)' communication for massive bandwidth, 'Holographic Communication' for immersive 3D telepresence, and 'Reconfigurable Intelligent Surfaces (RIS)' which are smart walls that reflect signals to bypass obstacles. It will be 'AI-Native', meaning AI controls the network optimization autonomously.",
+                questions: [
+                    { id: 131, q: "Which frequency spectrum is associated with 6G?", options: { A: "MHz", B: "GHz", C: "THz (Terahertz)", D: "kHz" }, ans: "C" },
+                    { id: 132, q: "What application is a primary driver for 6G's high bandwidth?", options: { A: "SMS", B: "Holographic Communication", C: "Email", D: "Voice Calls" }, ans: "B" },
+                    { id: 133, q: "What does 'RIS' stand for in 6G context?", options: { A: "Radio Interface System", B: "Reconfigurable Intelligent Surfaces", C: "Remote Internet Server", D: "Real-time Intelligent Signal" }, ans: "B" },
+                    { id: 134, q: "When is 6G expected to be commercially available?", options: { A: "2022", B: "2025", C: "2030", D: "2050" }, ans: "C" },
+                    { id: 135, q: "What does 'AI-Native' mean?", options: { A: "AI is an optional app", B: "AI is integrated into the core network design", C: "Users need AI phones", D: "AI is banned" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 12: 5G Security Features",
+                text: "5G improves security significantly over 4G. It introduces 'SUCI' (Subscription Concealed Identifier) to encrypt the user's permanent identity (IMSI) over the air, preventing 'IMSI Catchers' or Stingrays from tracking users. It also supports 'Unified Authentication' allowing access to non-3GPP networks (like Wi-Fi) securely. The interconnection between operators is secured using 'SEPP' (Security Edge Protection Proxy).",
+                questions: [
+                    { id: 136, q: "What problem does SUCI solve?", options: { A: "Slow internet", B: "IMSI Catching / Identity theft", C: "Poor battery life", D: "Call drops" }, ans: "B" },
+                    { id: 137, q: "Which node protects the operator's core network from other operators during roaming?", options: { A: "MME", B: "SEPP", C: "eNodeB", D: "UPF" }, ans: "B" },
+                    { id: 138, q: "What is 'Unified Authentication'?", options: { A: "Using one password for everything", B: "Secure access over various access types (5G, Wi-Fi)", C: "No password required", D: "Using face ID only" }, ans: "B" },
+                    { id: 139, q: "In 4G, the IMSI was sent in plain text. In 5G, it is:", options: { A: "Deleted", B: "Encrypted as SUCI", C: "Shortened", D: "Public" }, ans: "B" },
+                    { id: 140, q: "What type of attacks are 'Stingrays' used for?", options: { A: "DDoS", B: "Surveillance / Tracking", C: "Phishing", D: "Virus injection" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 13: Digital Modulation Details",
+                text: "Digital modulation maps bits to symbols. 'BPSK' uses 2 phases to carry 1 bit/symbol. 'QPSK' uses 4 phases to carry 2 bits/symbol. '16-QAM' uses amplitude and phase to carry 4 bits/symbol. '64-QAM' carries 6 bits/symbol. As the order increases (e.g., 256-QAM), the data rate increases, but the symbols get closer together, making them more susceptible to noise and requiring a higher Signal-to-Noise Ratio (SNR).",
+                questions: [
+                    { id: 141, q: "How many distinct symbols are there in 16-QAM?", options: { A: "4", B: "8", C: "16", D: "32" }, ans: "C" },
+                    { id: 142, q: "Which modulation offers the highest data rate among these?", options: { A: "BPSK", B: "QPSK", C: "16-QAM", D: "64-QAM" }, ans: "D" },
+                    { id: 143, q: "What is the downside of using high-order modulation like 256-QAM?", options: { A: "Lower speed", B: "Requires cleaner signal (High SNR)", C: "Uses more power", D: "Requires larger antenna" }, ans: "B" },
+                    { id: 144, q: "If you have a very noisy channel, which scheme should the system drop down to?", options: { A: "64-QAM", B: "16-QAM", C: "QPSK/BPSK", D: "256-QAM" }, ans: "C" },
+                    { id: 145, q: "How many bits per symbol does QPSK carry?", options: { A: "1", B: "2", C: "3", D: "4" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 14: Improving Cellular Capacity",
+                text: "As user demand grows, networks must increase capacity. 'Cell Splitting' subdivides macro cells into smaller cells (micro/pico), allowing frequency reuse over shorter distances. 'Sectoring' uses directional antennas (e.g., 3 sectors of 120 degrees) to reduce co-channel interference. 'Trunking' efficiency exploits the statistical behavior of users—not everyone talks at once—allowing a few channels to serve many users.",
+                questions: [
+                    { id: 146, q: "What is the main effect of Cell Splitting?", options: { A: "Increases coverage area", B: "Increases capacity by reusing frequencies more often", C: "Reduces number of base stations", D: "Simplifies network" }, ans: "B" },
+                    { id: 147, q: "Standard sectoring typically divides a cell into how many sectors?", options: { A: "2", B: "3", C: "10", D: "100" }, ans: "B" },
+                    { id: 148, q: "What does sectoring primarily reduce?", options: { A: "Power consumption", B: "Co-channel interference", C: "Data rate", D: "User count" }, ans: "B" },
+                    { id: 149, q: "The concept that 'not all users call at the same time' is the basis of:", options: { A: "Trunking", B: "Roaming", C: "Paging", D: "Billing" }, ans: "A" },
+                    { id: 150, q: "In a sectorized cell, antennas are:", options: { A: "Omnidirectional", B: "Directional", C: "Underground", D: "Rotating" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 15: Wired vs Wireless Characteristics",
+                text: "Wired communication (Fiber, Copper) offers high reliability, security, and bandwidth but lacks mobility. Wireless communication (Radio, Microwave) offers mobility and scalability but suffers from interference, fading, and security risks since the medium is shared and open. Fiber optics use light for transmission, making them immune to electromagnetic interference (EMI).",
+                questions: [
+                    { id: 151, q: "Which medium is immune to Electromagnetic Interference (EMI)?", options: { A: "Copper", B: "Coaxial Cable", C: "Fiber Optics", D: "Radio Waves" }, ans: "C" },
+                    { id: 152, q: "What is the main trade-off of Wireless compared to Wired?", options: { A: "Higher cost vs Lower cost", B: "Mobility vs Reliability/Stability", C: "Digital vs Analog", D: "Short range vs Long range" }, ans: "B" },
+                    { id: 153, q: "Which is a 'Shared Medium'?", options: { A: "Dedicated Fiber line", B: "Wireless Air Interface", C: "Ethernet Switch", D: "Hard Drive" }, ans: "B" },
+                    { id: 154, q: "Why is wired communication generally more secure?", options: { A: "It uses encryption", B: "Physical access to the cable is required to intercept", C: "It is slower", D: "It uses digital signals" }, ans: "B" },
+                    { id: 155, q: "Which has the highest potential bandwidth?", options: { A: "Twisted Pair", B: "Coaxial", C: "Fiber Optics", D: "Microwave" }, ans: "C" }
+                ]
+            },
+            {
+                title: "Passage 16: Bearers and Quality of Service (QoS)",
+                text: "In LTE, a 'Bearer' is a logical tunnel for data with specific QoS. The 'Default Bearer' is established when the UE attaches and provides 'Best Effort' connectivity (Non-GBR). A 'Dedicated Bearer' is established on demand for specific services like VoLTE or Video and provides a 'Guaranteed Bit Rate' (GBR). QoS is defined by the QCI (QoS Class Identifier) which specifies delay, packet loss, and priority.",
+                questions: [
+                    { id: 156, q: "When is the Default Bearer established?", options: { A: "During Attach procedure", B: "During a call", C: "When downloading a file", D: "During Handover" }, ans: "A" },
+                    { id: 157, q: "Which parameter defines the packet delay budget and priority?", options: { A: "IMSI", B: "QCI (QoS Class Identifier)", C: "IP Address", D: "TEID" }, ans: "B" },
+                    { id: 158, q: "Voice over LTE (VoLTE) typically uses which bearer type?", options: { A: "Default (Non-GBR)", B: "Dedicated (GBR)", C: "Wi-Fi", D: "Circuit Switched" }, ans: "B" },
+                    { id: 159, q: "Does the Default Bearer have a Guaranteed Bit Rate?", options: { A: "Yes", B: "No (Non-GBR)", C: "Sometimes", D: "Only for VIPs" }, ans: "B" },
+                    { id: 160, q: "Can a UE have multiple bearers active simultaneously?", options: { A: "No", B: "Yes (Default + Dedicated)", C: "Only in 5G", D: "Only in roaming" }, ans: "B" }
+                ]
+            }
+        ];
+
+        // Passages 17-24 (Set 3 Paragraph)
+        const paragraphMCQsSet3 = [
+            {
+                title: "Passage 17: Signal Types",
+                text: "Signals are fundamental to communication. An 'Analog Signal' varies continuously in time and amplitude, like human voice. A 'Digital Signal' uses discrete values (0s and 1s), making it easier to process, store, and noise-resistant. 'Baseband' signals are the original low-frequency signals (e.g., voice), while 'Broadband' or 'Passband' signals are shifted to higher frequencies for transmission. 'Modulation' is the process of converting baseband to passband.",
+                questions: [
+                    { id: 201, q: "Why are digital signals preferred in modern communication?", options: { A: "They are continuous", B: "They are easier to store and noise-resistant", C: "They require infinite bandwidth", D: "They are analog" }, ans: "B" },
+                    { id: 202, q: "Which signal type corresponds to the original information source before modulation?", options: { A: "Passband", B: "Broadband", C: "Baseband", D: "High frequency" }, ans: "C" },
+                    { id: 203, q: "Human voice is naturally:", options: { A: "Digital", B: "Discrete", C: "Analog", D: "Encrypted" }, ans: "C" },
+                    { id: 204, q: "Modulation converts Baseband to:", options: { A: "Passband/Broadband", B: "Digital", C: "Noise", D: "DC" }, ans: "A" },
+                    { id: 205, q: "Which signal takes discrete values?", options: { A: "Analog", B: "Continuous", C: "Digital", D: "Sine Wave" }, ans: "C" }
+                ]
+            },
+            {
+                title: "Passage 18: Digital Modulation Types",
+                text: "Digital modulation techniques include Amplitude Shift Keying (ASK), Frequency Shift Keying (FSK), and Phase Shift Keying (PSK). ASK varies amplitude but is sensitive to noise. FSK varies frequency and is robust but uses more bandwidth. PSK varies phase and is power/bandwidth efficient. QAM combines Amplitude and Phase modulation to carry more bits per symbol, increasing data rates significantly.",
+                questions: [
+                    { id: 206, q: "Which modulation varies only the frequency of the carrier?", options: { A: "ASK", B: "PSK", C: "FSK", D: "QAM" }, ans: "C" },
+                    { id: 207, q: "Why is QAM widely used in high-speed data?", options: { A: "It is simple", B: "It carries multiple bits per symbol (High Spectral Efficiency)", C: "It uses only amplitude", D: "It is immune to noise" }, ans: "B" },
+                    { id: 208, q: "Which modulation is most sensitive to amplitude noise?", options: { A: "FSK", B: "PSK", C: "ASK", D: "FM" }, ans: "C" },
+                    { id: 209, q: "PSK stands for:", options: { A: "Pulse Shift Keying", B: "Phase Shift Keying", C: "Power Shift Keying", D: "Packet Shift Keying" }, ans: "B" },
+                    { id: 210, q: "If bandwidth efficiency is the main goal, which is generally better?", options: { A: "FSK", B: "PSK", C: "ASK", D: "Analog FM" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 19: Multiple Access Mechanics",
+                text: "To allow multiple users to share a channel, we use Multiple Access. 'FDMA' gives each user a unique frequency. 'TDMA' gives each user a unique time slot on the same frequency. 'CDMA' allows all users to use the whole frequency at the same time by assigning unique spreading codes. 'OFDMA' splits the channel into orthogonal subcarriers, assigning subsets to users, used in LTE/5G.",
+                questions: [
+                    { id: 211, q: "Which technology assigns unique spreading codes to users?", options: { A: "TDMA", B: "FDMA", C: "CDMA", D: "OFDMA" }, ans: "C" },
+                    { id: 212, q: "In TDMA, users are separated by:", options: { A: "Frequency", B: "Time", C: "Code", D: "Distance" }, ans: "B" },
+                    { id: 213, q: "OFDMA uses subcarriers that are:", options: { A: "Parallel and Orthogonal", B: "Serial", C: "Interfering", D: "Analog" }, ans: "A" },
+                    { id: 214, q: "Which system requires 'Guard Bands'?", options: { A: "CDMA", B: "FDMA", C: "TDMA", D: "All of them" }, ans: "B" },
+                    { id: 215, q: "Which is used in 4G LTE downlink?", options: { A: "CDMA", B: "TDMA", C: "OFDMA", D: "FDMA" }, ans: "C" }
+                ]
+            },
+            {
+                title: "Passage 20: Cellular Design Principles",
+                text: "Cellular networks reuse frequencies to increase capacity. 'Cluster Size' (N) determines the reuse pattern (e.g., N=7). 'Co-channel interference' occurs between cells using the same frequency. To reduce this, cells are kept far apart. 'Handoff' maintains connection during mobility. 'Hard Handoff' breaks the connection first, while 'Soft Handoff' (in CDMA) connects to the new cell before breaking the old one.",
+                questions: [
+                    { id: 216, q: "Co-channel interference is caused by:", options: { A: "Cells using different frequencies", B: "Cells using the same frequency", C: "Users in the same cell", D: "Rain" }, ans: "B" },
+                    { id: 217, q: "Soft Handoff is often called:", options: { A: "Break-before-make", B: "Make-before-break", C: "Hard Handoff", D: "Fast Handoff" }, ans: "B" },
+                    { id: 218, q: "A Cluster is a group of cells that:", options: { A: "Use the same frequency", B: "Use the complete set of available channels", C: "Are turned off", D: "Are only macro cells" }, ans: "B" },
+                    { id: 219, q: "To increase capacity in a dense area, operators use:", options: { A: "Larger cells", B: "Smaller cells (Microcells)", C: "Less frequency", D: "Analog signals" }, ans: "B" },
+                    { id: 220, q: "If Cluster Size N=7, how many different frequency sets are used?", options: { A: "1", B: "3", C: "7", D: "12" }, ans: "C" }
+                ]
+            },
+            {
+                title: "Passage 21: LTE Interfaces and Nodes",
+                text: "The LTE architecture has specific interfaces. The 'S1-MME' connects eNodeB to MME for control. The 'S1-U' connects eNodeB to SGW for data. The 'X2' interface connects neighboring eNodeBs for handover. The 'SGi' connects the PGW to the external Internet/PDN. The 'HSS' holds the subscription data and communicates via the S6a interface.",
+                questions: [
+                    { id: 221, q: "Which interface handles user data traffic between eNodeB and Core?", options: { A: "S1-MME", B: "S1-U", C: "X2", D: "S6a" }, ans: "B" },
+                    { id: 222, q: "Direct handover coordination between eNodeBs happens over:", options: { A: "S1", B: "X2", C: "SGi", D: "Air Interface" }, ans: "B" },
+                    { id: 223, q: "Which interface connects the LTE network to the Internet?", options: { A: "S1-U", B: "SGi", C: "X2", D: "Rx" }, ans: "B" },
+                    { id: 224, q: "S1-MME carries what type of traffic?", options: { A: "User Video", B: "Control Signaling", C: "Internet Data", D: "Voice Packets" }, ans: "B" },
+                    { id: 225, q: "The HSS connects to the MME via:", options: { A: "S6a", B: "S1", C: "X2", D: "SGi" }, ans: "A" }
+                ]
+            },
+            {
+                title: "Passage 22: 5G Core Functions",
+                text: "The 5G Core uses Service Based Architecture (SBA). The 'AMF' (Access & Mobility Management Function) handles registration and mobility (like MME). The 'SMF' (Session Management Function) handles PDU sessions and IP allocation (like MME/PGW control). The 'UPF' (User Plane Function) routes data packets (like SGW/PGW data). This separation allows flexible deployment and slicing.",
+                questions: [
+                    { id: 226, q: "Which 5G function is purely User Plane?", options: { A: "AMF", B: "SMF", C: "UPF", D: "NRF" }, ans: "C" },
+                    { id: 227, q: "Which function assigns IP addresses to UEs?", options: { A: "AMF", B: "SMF", C: "UPF", D: "gNodeB" }, ans: "B" },
+                    { id: 228, q: "The AMF is primarily responsible for:", options: { A: "Data Routing", B: "Mobility and Registration", C: "Charging", D: "Application Hosting" }, ans: "B" },
+                    { id: 229, q: "What architecture does 5G Core use?", options: { A: "Point-to-Point", B: "Service Based Architecture (SBA)", C: "Circuit Switched", D: "Bus Topology" }, ans: "B" },
+                    { id: 230, q: "Which node corresponds to the MME's mobility role?", options: { A: "UPF", B: "AMF", C: "SMF", D: "UDM" }, ans: "B" }
+                ]
+            },
+            {
+                title: "Passage 23: Advanced Wireless Techniques",
+                text: "To improve speed and reliability, modern networks use advanced techniques. 'MIMO' (Multiple Input Multiple Output) uses multiple antennas to send multiple data streams (Spatial Multiplexing) or improve reliability (Diversity). 'Beamforming' uses phased arrays to direct energy to specific users, extending range and reducing interference. 'Carrier Aggregation' combines multiple frequency bands to increase bandwidth.",
+                questions: [
+                    { id: 231, q: "Which technique combines multiple frequency bands for higher speed?", options: { A: "MIMO", B: "Beamforming", C: "Carrier Aggregation", D: "Modulation" }, ans: "C" },
+                    { id: 232, q: "Spatial Multiplexing in MIMO increases:", options: { A: "Range", B: "Data Rate", C: "Battery Life", D: "Latency" }, ans: "B" },
+                    { id: 233, q: "Beamforming is most effective at:", options: { A: "Low frequencies", B: "High frequencies (e.g., mmWave) with antenna arrays", C: "Single antenna systems", D: "Wired connections" }, ans: "B" },
+                    { id: 234, q: "MIMO requires:", options: { A: "Multiple Antennas at TX and RX", B: "Single Antenna", C: "Analog signals", D: "Satellites" }, ans: "A" },
+                    { id: 235, q: "Phased arrays are used in:", options: { A: "Beamforming", B: "Frequency Hopping", C: "AM Radio", D: "2G" }, ans: "A" }
+                ]
+            },
+            {
+                title: "Passage 24: Network Virtualization and 6G",
+                text: "The future is software-defined. 'SDN' (Software Defined Networking) centralizes control, making networks programmable. 'NFV' (Network Function Virtualization) runs network nodes as software (VMs/Containers). 6G will integrate 'AI' for self-optimization and use 'THz' frequencies for extreme speeds, enabling 'Holographic' communication and 'Digital Twins'.",
+                questions: [
+                    { id: 236, q: "Which technology decouples software functions from hardware appliances?", options: { A: "SDN", B: "NFV", C: "MIMO", D: "LTE" }, ans: "B" },
+                    { id: 237, q: "SDN relies on a centralized:", options: { A: "Antenna", B: "Controller", C: "Battery", D: "Switch" }, ans: "B" },
+                    { id: 238, q: "6G will primarily utilize which spectrum for Tbps speeds?", options: { A: "Megahertz", B: "Terahertz (THz)", C: "Kilohertz", D: "Visible Light only" }, ans: "B" },
+                    { id: 239, q: "What role will AI play in 6G?", options: { A: "None", B: "Network optimization and automation (AI-Native)", C: "Just for chatbots", D: "Increasing latency" }, ans: "B" },
+                    { id: 240, q: "Digital Twins refers to:", options: { A: "Two phones", B: "Virtual replicas of physical systems", C: "Dual SIMs", D: "MIMO antennas" }, ans: "B" }
+                ]
+            }
+        ];
+
+        // --- GLOBAL STATE ---
+        let currentSet = 1;
+
         // --- RENDERING LOGIC ---
         const sectionAContainer = document.getElementById('section-a-container');
         const sectionBContainer = document.getElementById('section-b-container');
@@ -241,33 +537,73 @@
             `;
         }
 
-        // Render Section A
-        sectionA.forEach(q => {
-            sectionAContainer.innerHTML += createQuestionHTML(q);
-        });
-
-        // Render Section B
-        sectionBPassages.forEach(passage => {
-            const passageHTML = `
-                <div class="bg-gray-100 p-6 rounded-lg border-l-4 border-indigo-500 mb-6">
-                    <h3 class="font-bold text-xl text-indigo-700 mb-2">${passage.title}</h3>
-                    <p class="text-gray-700 leading-relaxed">${passage.text}</p>
-                </div>
-            `;
-            const questionsHTML = passage.questions.map(q => createQuestionHTML(q)).join('<div class="my-4"></div>');
+        function renderTest(setNumber) {
+            currentSet = setNumber;
+            sectionAContainer.innerHTML = '';
+            sectionBContainer.innerHTML = '';
             
-            const groupWrapper = document.createElement('div');
-            groupWrapper.innerHTML = passageHTML + '<div class="space-y-6">' + questionsHTML + '</div>';
-            sectionBContainer.appendChild(groupWrapper);
-        });
+            // Update Label
+            document.getElementById('current-set-label').innerText = `Set ${setNumber}`;
+
+            // Update Tab Styles
+            [1, 2, 3].forEach(num => {
+                const btn = document.getElementById(`btn-set${num}`);
+                if (num === setNumber) {
+                    btn.className = "px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-blue-600 text-white shadow-md ring-2 ring-blue-600 ring-offset-1";
+                } else {
+                    btn.className = "px-6 py-2 rounded-lg font-bold transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-white text-blue-600 border border-blue-200 hover:bg-gray-50";
+                }
+            });
+
+            // Data Selection
+            let simpleQuestions, paragraphQuestions;
+            if (setNumber === 1) {
+                simpleQuestions = simpleMCQsSet1;
+                paragraphQuestions = paragraphMCQsSet1;
+            } else if (setNumber === 2) {
+                simpleQuestions = simpleMCQsSet2;
+                paragraphQuestions = paragraphMCQsSet2;
+            } else {
+                simpleQuestions = simpleMCQsSet3;
+                paragraphQuestions = paragraphMCQsSet3;
+            }
+
+            // Render Section A
+            simpleQuestions.forEach(q => {
+                sectionAContainer.innerHTML += createQuestionHTML(q);
+            });
+
+            // Render Section B
+            paragraphQuestions.forEach(passage => {
+                const passageHTML = `
+                    <div class="bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600 mb-6 shadow-sm">
+                        <h3 class="font-bold text-xl text-indigo-800 mb-2">${passage.title}</h3>
+                        <p class="text-gray-700 leading-relaxed font-serif">${passage.text}</p>
+                    </div>
+                `;
+                const questionsHTML = passage.questions.map(q => createQuestionHTML(q)).join('<div class="my-4"></div>');
+                
+                const groupWrapper = document.createElement('div');
+                groupWrapper.innerHTML = passageHTML + '<div class="space-y-6">' + questionsHTML + '</div>';
+                sectionBContainer.appendChild(groupWrapper);
+            });
+            
+            // Hide previous scores
+            document.getElementById('score-display').classList.add('hidden');
+        }
+
+        // --- CONTROLS ---
+        function switchSet(setNumber) {
+            renderTest(setNumber);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
 
         // --- SCORING LOGIC ---
         function submitTest() {
             let score = 0;
             const totalQuestions = 80;
-            let allAnswered = true; // Optional: could check if all are answered
 
-            // Process all question cards
+            // Process visible question cards only
             const cards = document.querySelectorAll('.question-card');
             
             cards.forEach(card => {
@@ -277,7 +613,7 @@
                 const feedbackDiv = card.querySelector('.feedback');
                 
                 // Reset styling
-                card.classList.remove('correct-answer', 'incorrect-answer');
+                card.classList.remove('correct-answer', 'incorrect-answer', 'border-red-300');
                 feedbackDiv.classList.add('hidden');
                 
                 if (selectedOption) {
@@ -297,7 +633,7 @@
                     }
                 } else {
                     // Not answered
-                    card.classList.add('border-red-300'); // distinct style for unanswered
+                    card.classList.add('border-red-300'); 
                     feedbackDiv.textContent = `Not answered. Correct answer: ${correctAnswer}`;
                     feedbackDiv.classList.remove('hidden');
                     feedbackDiv.classList.add('text-red-700');
@@ -313,6 +649,10 @@
             // Scroll to top to see score
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
+
+        // Initialize with Set 1
+        renderTest(1);
+
     </script>
 </body>
 </html>
